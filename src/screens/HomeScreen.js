@@ -1,0 +1,71 @@
+import React from "react";
+import { Text, View } from "react-native";
+import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+
+class HomeScreen extends React.Component {
+
+  render() {
+    return (
+      <LinearGradient
+        colors={["#480875", "#160329", "#03aacc"]}
+        starts={[0.6, 0.2]}
+        ends={[0.7, 0.7]}
+        style={{ flex: 1, borderRadius: 5 }}
+      >
+        <View style={styles.container}>
+          <View style={styles.buttons}>
+          
+          <TouchableOpacity style={styles.button} onPress={()=>this.props.navigation.navigate('CreateLobby')}>
+            <Text style={styles.h1}> Criar Sala </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={()=>this.props.navigation.navigate('SignInLobby')}>
+            <Text style={styles.h1}> Entrar em Sala </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button}  onPress={()=>this.props.navigation.navigate('Instructions')}>
+            <Text style={styles.h1}> Instruções </Text>
+          </TouchableOpacity>
+          </View>
+        </View>
+      </LinearGradient>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection:"column",
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  buttons: {
+    marginBottom:10,
+    width:'100%',
+    alignItems: "center",
+    justifyContent:"space-around"
+
+  },
+  button: {
+    margin:10,
+    width:'65%',
+    height:60,
+    backgroundColor: "#fff",
+    padding: 10,
+    borderRadius:20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 2,
+      height: 5
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 6.68,
+    elevation: 8
+  },
+  h1: {
+    fontSize: 25,
+   
+    textAlign: "center"
+  }
+});
+export default HomeScreen;
