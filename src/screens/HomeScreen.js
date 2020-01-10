@@ -2,11 +2,13 @@ import React from "react";
 import { Text, View } from "react-native";
 import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import Header from '../components/Header'
 
 class HomeScreen extends React.Component {
-
+ 
   render() {
     return (
+      
       <LinearGradient
         colors={["#480875", "#160329", "#03aacc"]}
         starts={[0.6, 0.2]}

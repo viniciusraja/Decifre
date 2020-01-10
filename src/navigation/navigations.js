@@ -13,15 +13,15 @@ const AppNavigator= createStackNavigator({
     Home:{
         screen:HomeScreen,
         navigationOptions:{
-            headerShown: false
+            headerShown: false,
         },
-        
     },
     CreateLobby:{
         screen:CreateLobby,
         navigationOptions:{
-            title: 'Criar Sala',
+            headerShown: false,
         },
+    
     }, 
     SignInLobby:{
         screen:SignInLobby,
@@ -37,9 +37,13 @@ const AppNavigator= createStackNavigator({
     }, 
     CreateTeams:{
         screen:CreateTeams,
+        defaultNavigationOptions:{
+            headerStyle: {backgroundColor:"red"},
+            
+        },
         navigationOptions:{
-            header:(navigation,screenprops)=><Header {...navigation} {...screenprops}/>
-        }
+            header:(navigation,screenprops)=><Header  {...navigation} {...screenprops}/>,
+        },
     }, 
 })
 

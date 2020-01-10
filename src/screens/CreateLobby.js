@@ -3,6 +3,8 @@ import { Text, View } from "react-native";
 import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { TextInput } from "react-native-gesture-handler";
+import Header from '../components/Header'
+
 
 class CreateLobby extends React.Component {
   constructor() {
@@ -26,7 +28,8 @@ class CreateLobby extends React.Component {
         starts={[0.6, 0.2]}
         ends={[0.7, 0.7]}
         style={{ flex: 1 }}
-      >
+      > 
+       
         <View style={styles.container}>
           <View style={styles.buttons}>
             <TextInput

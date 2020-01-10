@@ -25,12 +25,14 @@ export default class Header extends React.Component {
 const styles = StyleSheet.create({
     container: {
             backgroundColor:"#fff",
-            height:80,
+            height:55,
             flexDirection:'row',
             width:"100%",
             justifyContent:'flex-start',
             alignItems:'flex-end',
             padding:10,
+            borderBottomLeftRadius:20,
+            borderBottomRightRadius:50,
     },
     h1: {
       fontSize:20,

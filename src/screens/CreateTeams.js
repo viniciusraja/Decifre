@@ -3,15 +3,15 @@ import { Text, View } from "react-native";
 import { ScrollView, StyleSheet, TouchableOpacity, Picker } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { TextInput } from "react-native-gesture-handler";
-import Player from '../components/Player'
+import Player from "../components/Player";
 
 class CreateTeams extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          players: 'Java',
-          team:'',
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      players: "Java",
+      team: ""
+    };
     this.handleChangeText = this.handleChangeText.bind(this);
   }
 
@@ -29,22 +29,21 @@ class CreateTeams extends React.Component {
         ends={[0.7, 0.7]}
         style={{ flex: 1 }}
       >
-      
         <View style={styles.container}>
-            <TextInput
-              style={styles.input}
-              placeholder="Nome do seu Time"
-              placeholderTextColor="grey"
-              onChangeText={team => this.setState({ team })}
-              value={this.state.team}
-              />
+          <TextInput
+            style={styles.input}
+            placeholder="Nome do seu Time"
+            placeholderTextColor="grey"
+            onChangeText={team => this.setState({ team })}
+            value={this.state.team}
+          />
 
-           <View style={styles.players}>
-             <Player/>
-           </View>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.h1}> JOGAR </Text>
-            </TouchableOpacity>
+          <View style={styles.players}>
+            <Player />
+          </View>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.h1}> JOGAR </Text>
+          </TouchableOpacity>
         </View>
       </LinearGradient>
     );
@@ -54,10 +53,10 @@ class CreateTeams extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    textAlign: 'center',
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    textAlign: "center"
   },
 
   button: {
@@ -81,13 +80,13 @@ const styles = StyleSheet.create({
   h1: {
     fontSize: 20,
     textAlign: "center",
-    color:"#fff"
+    color: "#fff"
   },
   input: {
-    textAlign:"center",
+    textAlign: "center",
     fontSize: 25,
-    margin:10,
-    width:"80%",
+    margin: 10,
+    width: "80%",
     height: 40,
     backgroundColor: "#fff",
     borderRadius: 10,
@@ -99,18 +98,17 @@ const styles = StyleSheet.create({
     shadowRadius: 6.68,
     elevation: 5
   },
-  players:{
-    flex:1,
-    width:"80%",
-    backgroundColor:'#fff',
-    borderRadius:15,
-    alignItems:'center'
+  players: {
+    flex: 1,
+    width: "80%",
+    backgroundColor: "#fff",
+    borderRadius: 15,
+    alignItems: "center"
   },
-  dropdown:{
-      backgroundColor:'#fff',
-      width:180,
-      height:40,
-  },
-
+  dropdown: {
+    backgroundColor: "#fff",
+    width: 180,
+    height: 40
+  }
 });
 export default CreateTeams;
