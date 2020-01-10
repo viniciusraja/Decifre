@@ -14,16 +14,17 @@ class HomeScreen extends React.Component {
         style={{ flex: 1, borderRadius: 5 }}
       >
         <View style={styles.container}>
+          <Text style={styles.h1}>Decifre</Text>
           <View style={styles.buttons}>
           
           <TouchableOpacity style={styles.button} onPress={()=>this.props.navigation.navigate('CreateLobby')}>
-            <Text style={styles.h1}> Criar Sala </Text>
+            <Text style={styles.h2}> Criar Sala </Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={()=>this.props.navigation.navigate('SignInLobby')}>
-            <Text style={styles.h1}> Entrar em Sala </Text>
+            <Text style={styles.h2}> Entrar em Sala </Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}  onPress={()=>this.props.navigation.navigate('Instructions')}>
-            <Text style={styles.h1}> Instruções </Text>
+            <Text style={styles.h2}> Instruções </Text>
           </TouchableOpacity>
           </View>
         </View>
@@ -63,6 +64,12 @@ const styles = StyleSheet.create({
     elevation: 8
   },
   h1: {
+    fontSize: 80,
+    color:"#fff",
+    textAlign: "center",
+    marginBottom:80
+  },
+  h2: {
     fontSize: 25,
    
     textAlign: "center"

@@ -3,6 +3,7 @@ import { Text, View } from "react-native";
 import { ScrollView, StyleSheet, TouchableOpacity, Picker } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { TextInput } from "react-native-gesture-handler";
+import Header from '../components/Header'
 
 class CreateTeams extends React.Component {
     constructor(props) {
@@ -28,6 +29,7 @@ class CreateTeams extends React.Component {
         ends={[0.7, 0.7]}
         style={{ flex: 1 }}
       >
+        <Header></Header>
         <View style={styles.container}>
             <TextInput
               style={styles.input}

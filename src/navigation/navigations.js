@@ -1,6 +1,8 @@
+import React from 'react'
 import {createAppContainer} from 'react-navigation'
 import {createStackNavigator} from 'react-navigation-stack'
 
+import Header from '../components/Header'
 import HomeScreen from '../screens/HomeScreen'
 import CreateLobby from '../screens/CreateLobby'
 import SignInLobby from '../screens/SignInLobby'
@@ -11,7 +13,7 @@ const AppNavigator= createStackNavigator({
     Home:{
         screen:HomeScreen,
         navigationOptions:{
-            header: null,
+            headerShown: false
         },
         
     },
@@ -36,8 +38,8 @@ const AppNavigator= createStackNavigator({
     CreateTeams:{
         screen:CreateTeams,
         navigationOptions:{
-            title: 'Crie Seu Time',
-        },
+            header:()=>{<Header/>}
+        }
     }, 
 })
 
