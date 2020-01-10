@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
-import { AntDesign } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { FontAwesome } from 'expo-vector-icons';
 
 
 
-export default class Header extends React.Component {
+export default class Player extends React.Component {
   render() {
     return (
         <View style={styles.container}>
         
         
-        <AntDesign style={styles.iconUser} name='back' size={37} color='black' onPress={() => this.props.navigation.goBack()}/>
+        <FontAwesome style={styles.iconUser} name='user-secret' size={37} color='#fff' />
         <Text style={styles.h1}>Jogadores</Text>
         <TouchableOpacity>
-        <AntDesign style={styles.iconUser} name='adduser' size={37} color='black'/>
+        <Feather style={styles.iconUser} name='x' size={37} color='#fff'/>
         </TouchableOpacity>
         </View>
         
@@ -24,21 +25,23 @@ export default class Header extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-            backgroundColor:"#fff",
-            height:80,
+            backgroundColor:"purple",
+            height:60,
             flexDirection:'row',
-            width:"100%",
             justifyContent:'flex-start',
-            alignItems:'flex-end',
+            alignItems:'center',
             padding:10,
+            borderRadius:15,
+            margin:8,
     },
     h1: {
       fontSize:20,
       flex:1,
       marginLeft:10,
-      marginBottom:5
+      marginBottom:5,
+      color:"#fff"
     },
     iconUser:{
-     
+        
     }
     })

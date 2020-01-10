@@ -38,7 +38,7 @@ const AppNavigator= createStackNavigator({
     CreateTeams:{
         screen:CreateTeams,
         navigationOptions:{
-            header:()=>{<Header/>}
+            header:(navigation,screenprops)=><Header {...navigation} {...screenprops}/>
         }
     }, 
 })

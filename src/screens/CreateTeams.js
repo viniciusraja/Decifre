@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 import { ScrollView, StyleSheet, TouchableOpacity, Picker } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { TextInput } from "react-native-gesture-handler";
-import Header from '../components/Header'
+import Player from '../components/Player'
 
 class CreateTeams extends React.Component {
     constructor(props) {
@@ -29,7 +29,7 @@ class CreateTeams extends React.Component {
         ends={[0.7, 0.7]}
         style={{ flex: 1 }}
       >
-        <Header></Header>
+      
         <View style={styles.container}>
             <TextInput
               style={styles.input}
@@ -39,23 +39,8 @@ class CreateTeams extends React.Component {
               value={this.state.team}
               />
 
-           <View style={styles.dropdownBox}>
-            <Picker
-              style={styles.dropdown}
-              itemStyle={styles.dropdownItem}
-              mode='dropdown'
-              selectedValue={this.state.players}
-              onValueChange={(itemValue, itemIndex) =>
-                this.setState({ players: itemValue })
-              }
-            >
-              <Picker.Item key={'unselectable'} label="Número de Jogadores" value={null} enabled={false} />
-              <Picker.Item label="2 Jogadores" value="2" />
-              <Picker.Item label="3 Jogadores" value="3" />
-              <Picker.Item label="4 Jogadores" value="4" />
-              <Picker.Item label="5 Jogadores" value="5" />
-            </Picker>
-
+           <View style={styles.players}>
+             <Player/>
            </View>
             <TouchableOpacity style={styles.button}>
               <Text style={styles.h1}> JOGAR </Text>
@@ -70,7 +55,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     textAlign: 'center',
   },
@@ -78,12 +63,12 @@ const styles = StyleSheet.create({
   button: {
     width: 160,
     height: 45,
-    backgroundColor: "#11aa00",
+    backgroundColor: "purple",
     margin: 15,
     padding: 10,
     borderRadius: 15,
     alignContent: "center",
-    justifyContent: "center",
+    justifyContent: "flex-end",
     shadowColor: "#fff",
     shadowOffset: {
       width: 0,
@@ -95,13 +80,14 @@ const styles = StyleSheet.create({
   },
   h1: {
     fontSize: 20,
-    textAlign: "center"
+    textAlign: "center",
+    color:"#fff"
   },
   input: {
-    textAlign: "center",
+    textAlign:"center",
     fontSize: 25,
     margin:10,
-    width: 300,
+    width:"80%",
     height: 40,
     backgroundColor: "#fff",
     borderRadius: 10,
@@ -113,12 +99,12 @@ const styles = StyleSheet.create({
     shadowRadius: 6.68,
     elevation: 5
   },
-  dropdownBox:{
-      backgroundColor:'#fff',
-      width:200,
-      height:40,
-      borderRadius:10,
-      alignItems:'center'
+  players:{
+    flex:1,
+    width:"80%",
+    backgroundColor:'#fff',
+    borderRadius:15,
+    alignItems:'center'
   },
   dropdown:{
       backgroundColor:'#fff',
