@@ -6,20 +6,28 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default class Header extends React.Component {
   render() {
-    return (
+    if(this.props.nameIcon2==null){
+      return (
+        <>
         <View style={styles.container}>
-        
-        
-        <AntDesign style={styles.iconUser} name='back' size={37} color='black' onPress={() => this.props.navigation.goBack()}/>
-        <Text style={styles.h1}>Jogadores</Text>
+        <AntDesign style={styles.iconUser} name={this.props.name} size={37} color='black' onPress={() => this.props.navigation.goBack()}/>
+        <Text style={styles.h1}>{this.props.screen}</Text>
+        </View>
+        </>
+      )}
+    return (
+        <>
+        <View style={styles.container}>
+        <AntDesign style={styles.iconUser} name={this.props.name} size={37} color='black' onPress={() => this.props.navigation.goBack()}/>
+        <Text style={styles.h1}>{this.props.screen}</Text>
         <TouchableOpacity>
-        <AntDesign style={styles.iconUser} name='adduser' size={37} color='black'/>
+        <AntDesign style={styles.iconUser} name={this.props.nameIcon2} size={37} color='black'/>
         </TouchableOpacity>
         </View>
-        
-        )
+        </>
+        )}
   }
-}
+
 
 
 const styles = StyleSheet.create({
@@ -31,13 +39,12 @@ const styles = StyleSheet.create({
             justifyContent:'flex-start',
             alignItems:'flex-end',
             padding:10,
-            borderBottomLeftRadius:20,
-            borderBottomRightRadius:50,
+         
     },
     h1: {
-      fontSize:20,
+      fontSize:22,
       flex:1,
-      marginLeft:10,
+      marginLeft:15,
       marginBottom:5
     },
     iconUser:{

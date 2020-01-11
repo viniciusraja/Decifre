@@ -8,7 +8,7 @@ import Router from './navigation/navigations'
 const App = () =>{
     return(
         <>
-
+        <StatusBar hidden={true}/>
         <Router/>
         
          </>

@@ -1,9 +1,45 @@
 import React from "react";
 import { Text, View } from "react-native";
-import { ScrollView, StyleSheet, TouchableOpacity, Picker } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  FlatList,
+  SafeAreaView
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { TextInput } from "react-native-gesture-handler";
 import Player from "../components/Player";
+
+const DATA = [
+  {
+    id: '1',
+    playerName: "Luana",
+    color:"#300066"
+
+  },
+  {
+    id: '2',
+    playerName: "Vinícius",
+    color:"#5900b3"
+  },
+  {
+    id: '3',
+    playerName: "Pablo",
+    color:"#8c1aff"
+  },
+  {
+    id: '4',
+    playerName: "Yasmim",
+    color:"#b366ff"
+  },
+  {
+    id: '5',
+    playerName: "Pederneiras",
+    color:"#bb80ff"
+  },
+];
+
 
 class CreateTeams extends React.Component {
   constructor(props) {
@@ -24,9 +60,9 @@ class CreateTeams extends React.Component {
   render() {
     return (
       <LinearGradient
-        colors={["#480875", "#000000", "#03aacc"]}
-        starts={[0.6, 0.2]}
-        ends={[0.7, 0.7]}
+        colors={["#1a0033", "#330066", "#002699"]}
+        start={[0, 0]}
+        end={[1, 1.5]}
         style={{ flex: 1 }}
       >
         <View style={styles.container}>
@@ -39,7 +75,14 @@ class CreateTeams extends React.Component {
           />
 
           <View style={styles.players}>
-            <Player />
+            <SafeAreaView>
+            <FlatList
+              data={DATA}
+              renderItem={({ item }) => <Player name={item.playerName} color={item.color} />}
+              keyExtractor={item => item.id}
+            />
+            </SafeAreaView>
+
           </View>
           <TouchableOpacity style={styles.button}>
             <Text style={styles.h1}> JOGAR </Text>
@@ -56,14 +99,22 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "center",
-    textAlign: "center"
+    textAlign: "center",
+    shadowColor: "#fff",
+    shadowOffset: {
+      width: 0,
+      height: 5
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 6.68,
+    elevation: 15
   },
 
   button: {
     width: 160,
     height: 45,
-    backgroundColor: "purple",
-    margin: 15,
+    backgroundColor: "#0099cc",
+    margin: 20,
     padding: 10,
     borderRadius: 15,
     alignContent: "center",
@@ -83,6 +134,7 @@ const styles = StyleSheet.create({
     color: "#fff"
   },
   input: {
+  
     textAlign: "center",
     fontSize: 25,
     margin: 10,
@@ -99,6 +151,7 @@ const styles = StyleSheet.create({
     elevation: 5
   },
   players: {
+    flexDirection:"column",
     flex: 1,
     width: "80%",
     backgroundColor: "#fff",

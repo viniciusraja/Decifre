@@ -10,10 +10,10 @@ class HomeScreen extends React.Component {
     return (
       
       <LinearGradient
-        colors={["#480875", "#160329", "#03aacc"]}
-        starts={[0.6, 0.2]}
-        ends={[0.7, 0.7]}
-        style={{ flex: 1, borderRadius: 5 }}
+        colors={[ "#1a0033","#330066","#002699"]}
+        start={[0, 0]}
+        end={[1, 1.5]}
+        style={{ flex: 1}}
       >
         <View style={styles.container}>
           <Text style={styles.h1}>Decifre</Text>
