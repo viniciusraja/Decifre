@@ -22,31 +22,31 @@ class CreateTeams extends React.Component {
       {
         pos:0,
         id:'1',
-        playerName: "Luana",
+        playerName: "",
         color:"#300066"
       },
       {
         pos:1,
         id:'2',
-        playerName: "Vinícius",
+        playerName: "Viníciu",
         color:"#5900b3"
       },
       {
         pos:2,
         id:'3',
-        playerName: "Pablo",
+        playerName: "",
         color:"#8c1aff"
       },
       { 
         pos:3,
         id:'4',
-        playerName: "joselonilda",
+        playerName: "",
         color:"#b366ff"
       },
       { 
         pos:4,
         id:'5',
-        playerName: "",
+        playerName: "sdv",
         color:"#bb80ff"
       }
     ];
@@ -65,31 +65,29 @@ class CreateTeams extends React.Component {
     });
   }
   componentDidMount() {
- 
+    
     this.setState({ playersArray: [...this.DATA] })
  
   }
 
-  joinData = () => {
- 
-    this.DATA.push({playerName : "this.state.textInput_Holder"});
- 
-    this.setState({ playersArray: [...this.DATA] })
- 
-  }
-
-  deletePlayer(pos,id,playerName,color){
+   deletePlayer(pos){
     const players=[...this.state.playersArray]
-    //não está recebendo os props da função em players
-    //players.splice(pos,1)
-      players[1]={
-      pos:pos,
-      id:id,
-      playerName:"",
-      color:"blue"
-    }  
+  
+    players[pos].playerName=""
+      
       this.setState({ playersArray:players})
-}
+  }
+  addPlayer(){
+    const players=[...this.state.playersArray]
+    let index = players.findIndex((item) => item.playerName === "")
+    
+    players[index].playerName="Joãozinho"
+    this.setState({ playersArray:players})
+
+    //this.DATA.push({playersArray});
+ 
+    
+  }
   render() {
     return (
       <LinearGradient
@@ -111,15 +109,18 @@ class CreateTeams extends React.Component {
             <SafeAreaView>
             <FlatList
               data={this.state.playersArray}
-              renderItem={({ item }) => <Player playerName={item.playerName} id={item.id} color={item.color} pos={item.pos} delete={this.deletePlayer.bind(this)} />}
-              
-              extraData={this.state}
+              renderItem={({ item }) =>{ 
+              if(item.playerName=="")return null
+
+              return <Player playerName={item.playerName} color={item.color} pos={item.pos} delete={this.deletePlayer.bind(this)} />}}
+              keyExtractor={item=>item.id}
+              extraData={this.state.playersArray}
             />
             </SafeAreaView>
 
           </View>
           <TouchableOpacity style={styles.button}>
-            <Text style={styles.h1}> JOGAR </Text>
+            <Text style={styles.h1} onPress={()=>this.addPlayer(0)}> JOGAR </Text>
           </TouchableOpacity>
         </View>
       </LinearGradient>
@@ -190,7 +191,8 @@ const styles = StyleSheet.create({
     width: "80%",
     backgroundColor: "#fff",
     borderRadius: 15,
-    alignItems: "center"
+    alignItems: "center",
+    padding:0,
   },
   dropdown: {
     backgroundColor: "#fff",

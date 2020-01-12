@@ -10,7 +10,6 @@ export default class Player extends React.Component {
     super(props);
     this.state = {
       pos:this.props.pos,
-      id:this.props.id,
       playerName:this.props.playerName,
       color:this.props.color
     }
@@ -18,10 +17,7 @@ export default class Player extends React.Component {
 
  
   render() {
-    if(this.state.playerName==false)
-    return (
-      <></>
-    )  
+    
       return(
 
         <View style={{
@@ -45,13 +41,15 @@ export default class Player extends React.Component {
                 elevation: 7,
                 }}  >
             <FontAwesome style={styles.iconUser} name='user-secret' size={37} color='#fff' />
-            <Text style={styles.h1}>{this.state.playerName}</Text>
+            <Text style={styles.h1}>{this.props.playerName}</Text>
             <TouchableOpacity>
-            <Feather style={styles.iconUser} name='x' size={37} color='#fff' onPress={()=>this.props.delete([this.state.pos,this.state.id,this.state.playerName,this.state.color])}/>
+            <Feather style={styles.iconUser} name='x' size={37} color='#fff' onPress={()=>this.props.delete(this.state.pos)}/>
             </TouchableOpacity>
             </View>
             
         )
+        return(null)
+        
   }
 }
 
