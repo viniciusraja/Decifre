@@ -2,6 +2,7 @@ import React from 'react'
 import {createAppContainer} from 'react-navigation'
 import {createStackNavigator} from 'react-navigation-stack'
 
+
 import Header from '../components/Header'
 import HomeScreen from '../screens/HomeScreen'
 import CreateLobby from '../screens/CreateLobby'
@@ -38,7 +39,7 @@ const AppNavigator= createStackNavigator({
     CreateTeams:{
         screen:CreateTeams,
         navigationOptions:{
-            header:(navigation,screenprops)=><Header name="back" screen="Jogadores" nameIcon2="adduser" {...navigation} {...screenprops}/>,
+            header:(navigation,screenprops)=><Header name="back" screen="Jogadores" nameIcon2="adduser" {...navigation} {...screenprops} addPlayer={CreateTeams.setModal}/>,
         },
     }, 
 })

@@ -5,16 +5,16 @@ import { LinearGradient } from "expo-linear-gradient";
 import Header from '../components/Header'
 
 class HomeScreen extends React.Component {
- 
+
   render() {
     return (
-      
       <LinearGradient
-        colors={[ "#1a0033","#330066","#002699"]}
-        start={[0, 0]}
-        end={[1, 1.5]}
-        style={{ flex: 1}}
+      colors={[ "#1a0033","#330066","#002699"]}
+      start={[0, 0]}
+      end={[1, 1.5]}
+      style={{ flex: 1}}
       >
+      <Header name="back" screen="Jogadores" nameIcon2="adduser" {...navigation} {...screenprops} addPlayer={CreateTeams.setModal}/>
         <View style={styles.container}>
           <Text style={styles.h1}>Decifre</Text>
           <View style={styles.buttons}>

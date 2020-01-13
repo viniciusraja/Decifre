@@ -20,7 +20,7 @@ export default class Header extends React.Component {
         <View style={styles.container}>
         <AntDesign style={styles.iconUser} name={this.props.name} size={37} color='black' onPress={() => this.props.navigation.goBack()}/>
         <Text style={styles.h1}>{this.props.screen}</Text>
-        <TouchableOpacity >
+        <TouchableOpacity onPress={()=>this.props.addPlayer()}>
         <AntDesign style={styles.iconUser} name={this.props.nameIcon2} size={37} color='black'/>
         </TouchableOpacity>
         </View>

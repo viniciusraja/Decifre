@@ -15,7 +15,7 @@ export default class Player extends React.Component {
     }
   }
 
- //meudeus
+ 
   render() {
     
       return(

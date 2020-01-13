@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from 'react';
 import { Text, View } from "react-native";
 import {
-  ScrollView,
+  Modal,
   StyleSheet,
   TouchableOpacity,
   FlatList,
@@ -9,7 +9,9 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { TextInput } from "react-native-gesture-handler";
+
 import Player from "../components/Player";
+import CreatePlayer from "../components/CreatePlayer";
 
 
 
@@ -17,7 +19,7 @@ import Player from "../components/Player";
 class CreateTeams extends React.Component {
   constructor(props) {
     super(props);
-
+    
     this.DATA = [
       {
         pos:0,
@@ -53,12 +55,14 @@ class CreateTeams extends React.Component {
     
     this.state = {
       playersArray: [],
-     
+      modalVisible:false,
+      
     };
-
+    
     this.handleChangeText = this.handleChangeText.bind(this);
+    this.setModal = this.setModal.bind(this);
   }
-
+  
   handleChangeText(team) {
     this.setState({
       [name]: team
@@ -67,34 +71,35 @@ class CreateTeams extends React.Component {
   componentDidMount() {
     
     this.setState({ playersArray: [...this.DATA] })
- 
+    
+  }
+  
+  deletePlayer(pos){
+    const players=[...this.state.playersArray]
+    
+    players[pos].playerName=""
+    
+    this.setState({ playersArray:players})
   }
 
-   deletePlayer(pos){
-    const players=[...this.state.playersArray]
-  
-    players[pos].playerName=""
-      
-      this.setState({ playersArray:players})
-  }
   addPlayer(){
     const players=[...this.state.playersArray]
     let index = players.findIndex((item) => item.playerName === "")
     
     players[index].playerName="Joãozinho"
     this.setState({ playersArray:players})
+  }
 
-    //this.DATA.push({playersArray});
- 
-    
+  setModal(){
+    modalVisible=!modalVisible
   }
   render() {
     return (
       <LinearGradient
-        colors={["#1a0033", "#330066", "#002699"]}
-        start={[0, 0]}
-        end={[1, 1.5]}
-        style={{ flex: 1 }}
+      colors={["#1a0033", "#330066", "#002699"]}
+      start={[0, 0]}
+      end={[1, 1.5]}
+      style={{ flex: 1 }}
       >
         <View style={styles.container}>
           <TextInput
@@ -104,6 +109,17 @@ class CreateTeams extends React.Component {
             onChangeText={team => this.setState({ team })}
             value={this.state.team}
           />
+
+<Modal
+        animationType="slide"
+        transparent={true}
+        visible={false}
+        presentationStyle="overFullScreen"
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+        }}>
+      <CreatePlayer/>
+      </Modal>
 
           <View style={styles.players}>
             <SafeAreaView>
