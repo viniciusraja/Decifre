@@ -9,6 +9,7 @@ import CreateLobby from '../screens/CreateLobby'
 import SignInLobby from '../screens/SignInLobby'
 import Instructions from '../screens/Instructions'
 import CreateTeams from '../screens/CreateTeams'
+import Game from '../screens/Game'
 
 const AppNavigator= createStackNavigator({
     Home:{
@@ -39,7 +40,13 @@ const AppNavigator= createStackNavigator({
     CreateTeams:{
         screen:CreateTeams,
         navigationOptions:{
-            header:(navigation,screenprops)=><Header name="back" screen="Jogadores" nameIcon2="adduser" {...navigation} {...screenprops} addPlayer={CreateTeams.setModal}/>,
+            header:(navigation,screenprops)=><Header name="back" screen="Jogadores" nameIcon2="adduser" {...navigation} {...screenprops} />,
+        },
+    }, 
+    Game:{
+        screen:Game,
+        navigationOptions:{
+            header:(navigation,screenprops)=><Header name="back" screen="Jogadores" nameIcon2="adduser" {...navigation} {...screenprops} />,
         },
     }, 
 })

@@ -32,7 +32,7 @@ class SignInLobby extends React.Component {
           <View style={styles.buttons}>
             <TextInput
               style={styles.input}
-              placeholder="Digite o Nome da Sala"
+              placeholder="Digite o Código da Sala"
               placeholderTextColor="grey"
               onChangeText={room => this.setState({ room })}
               value={this.state.room}
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   },
   input: {
     textAlign: "center",
-    fontSize: 25,
+    fontSize: 20,
     width: 300,
     height: 40,
     backgroundColor: "#fff",

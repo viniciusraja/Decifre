@@ -14,7 +14,6 @@ class HomeScreen extends React.Component {
       end={[1, 1.5]}
       style={{ flex: 1}}
       >
-      <Header name="back" screen="Jogadores" nameIcon2="adduser" {...navigation} {...screenprops} addPlayer={CreateTeams.setModal}/>
         <View style={styles.container}>
           <Text style={styles.h1}>Decifre</Text>
           <View style={styles.buttons}>
@@ -25,7 +24,7 @@ class HomeScreen extends React.Component {
           <TouchableOpacity style={styles.button} onPress={()=>this.props.navigation.navigate('SignInLobby')}>
             <Text style={styles.h2}> Entrar em Sala </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}  onPress={()=>this.props.navigation.navigate('Instructions')}>
+          <TouchableOpacity style={styles.button}  onPress={()=>this.props.navigation.navigate('Game')}>
             <Text style={styles.h2}> Instruções </Text>
           </TouchableOpacity>
           </View>

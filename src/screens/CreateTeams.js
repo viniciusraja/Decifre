@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { Text, View } from "react-native";
 import {
   Modal,
@@ -9,97 +9,99 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { TextInput } from "react-native-gesture-handler";
+import { AntDesign, MaterialCommunityIcons } from "expo-vector-icons";
 
 import Player from "../components/Player";
 import CreatePlayer from "../components/CreatePlayer";
-
-
-
-
 class CreateTeams extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.DATA = [
       {
-        pos:0,
-        id:'1',
+        pos: 0,
+        id: "1",
         playerName: "",
-        color:"#300066"
+        color: "#300066"
       },
       {
-        pos:1,
-        id:'2',
+        pos: 1,
+        id: "2",
         playerName: "Viníciu",
-        color:"#5900b3"
+        color: "#5900b3"
       },
       {
-        pos:2,
-        id:'3',
+        pos: 2,
+        id: "3",
         playerName: "",
-        color:"#8c1aff"
+        color: "#8c1aff"
       },
-      { 
-        pos:3,
-        id:'4',
+      {
+        pos: 3,
+        id: "4",
         playerName: "",
-        color:"#b366ff"
+        color: "#b366ff"
       },
-      { 
-        pos:4,
-        id:'5',
+      {
+        pos: 4,
+        id: "5",
         playerName: "sdv",
-        color:"#bb80ff"
+        color: "#bb80ff"
       }
     ];
-    
+
     this.state = {
       playersArray: [],
-      modalVisible:false,
-      
+      modalVisible: false,
+      y: 0
     };
-    
+
     this.handleChangeText = this.handleChangeText.bind(this);
     this.setModal = this.setModal.bind(this);
   }
-  
+
   handleChangeText(team) {
     this.setState({
       [name]: team
     });
   }
+  useEfect
+
   componentDidMount() {
-    
-    this.setState({ playersArray: [...this.DATA] })
-    
-  }
-  
-  deletePlayer(pos){
-    const players=[...this.state.playersArray]
-    
-    players[pos].playerName=""
-    
-    this.setState({ playersArray:players})
+    this.setState({ playersArray: [...this.DATA] });
   }
 
-  addPlayer(){
-    const players=[...this.state.playersArray]
-    let index = players.findIndex((item) => item.playerName === "")
-    
-    players[index].playerName="Joãozinho"
-    this.setState({ playersArray:players})
+  deletePlayer(pos) {
+    const players = [...this.state.playersArray];
+
+    players[pos].playerName = "";
+
+    this.setState({ playersArray: players });
   }
 
-  setModal(){
-    modalVisible=!modalVisible
+  handleLayout = ({ nativeEvent }) => {
+    this.setState({ y: nativeEvent.layout.y });
+  };
+
+  addPlayer(name) {
+    const players = [...this.state.playersArray];
+    let index = players.findIndex(item => item.playerName === "");
+
+    players[index].playerName = name;
+    this.setState({ playersArray: players });
+    this.setModal();
+  }
+
+  setModal() {
+    this.setState({ modalVisible: !this.state.modalVisible });
   }
   render() {
     return (
       <LinearGradient
-      colors={["#1a0033", "#330066", "#002699"]}
-      start={[0, 0]}
-      end={[1, 1.5]}
-      style={{ flex: 1 }}
+        colors={["#1a0033", "#330066", "#002699"]}
+        start={[0, 0]}
+        end={[1, 1.5]}
+        style={{ flex: 1 }}
       >
         <View style={styles.container}>
           <TextInput
@@ -110,34 +112,52 @@ class CreateTeams extends React.Component {
             value={this.state.team}
           />
 
-<Modal
-        animationType="slide"
-        transparent={true}
-        visible={false}
-        presentationStyle="overFullScreen"
-        onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
-        }}>
-      <CreatePlayer/>
-      </Modal>
+          <Modal
+            style={styles.modal}
+            animationType="slide"
+            transparent={true}
+            visible={this.state.modalVisible}
+            presentationStyle="overFullScreen"
+          >
+            <CreatePlayer
+              addPlayer={this.addPlayer.bind(this)}
+            />
+          </Modal>
 
-          <View style={styles.players}>
-            <SafeAreaView>
+          <View style={styles.playersBox}>
             <FlatList
+              style={styles.listPlayers}
               data={this.state.playersArray}
-              renderItem={({ item }) =>{ 
-              if(item.playerName=="")return null
-
-              return <Player playerName={item.playerName} color={item.color} pos={item.pos} delete={this.deletePlayer.bind(this)} />}}
-              keyExtractor={item=>item.id}
+              renderItem={({ item }) => {
+                if (item.playerName == "") return null;
+                return (
+                  <Player
+                    playerName={item.playerName}
+                    color={item.color}
+                    pos={item.pos}
+                    delete={this.deletePlayer.bind(this)}
+                  />
+                );
+              }}
+              keyExtractor={item => item.id}
               extraData={this.state.playersArray}
             />
-            </SafeAreaView>
 
+            <View onLayout={this.handleLayout}>
+              {this.state.y < 290 && (
+                <TouchableOpacity
+                  style={styles.iconUser}
+                  onPress={() => this.setModal()}
+                >
+                  <AntDesign name="adduser" size={30} color="#555" />
+                </TouchableOpacity>
+              )}
+            </View>
           </View>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.h1} onPress={()=>this.addPlayer(0)}> JOGAR </Text>
-          </TouchableOpacity>
+            <TouchableOpacity style={styles.playButton}  onPress={()=>{this.props.navigation.navigate('Game') }}>
+               <MaterialCommunityIcons  name="play-speed" size={75} color='#ddd' />
+            </TouchableOpacity>
+           
         </View>
       </LinearGradient>
     );
@@ -161,23 +181,8 @@ const styles = StyleSheet.create({
     elevation: 15
   },
 
-  button: {
-    width: 160,
-    height: 45,
-    backgroundColor: "#0099cc",
-    margin: 20,
-    padding: 10,
-    borderRadius: 15,
-    alignContent: "center",
-    justifyContent: "flex-end",
-    shadowColor: "#fff",
-    shadowOffset: {
-      width: 0,
-      height: 5
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 6.68,
-    elevation: 5
+  playButton: {
+    marginVertical:15,
   },
   h1: {
     fontSize: 20,
@@ -185,10 +190,9 @@ const styles = StyleSheet.create({
     color: "#fff"
   },
   input: {
-  
     textAlign: "center",
-    fontSize: 25,
-    margin: 10,
+    fontSize: 20,
+    marginVertical: 20,
     width: "80%",
     height: 40,
     backgroundColor: "#fff",
@@ -201,19 +205,33 @@ const styles = StyleSheet.create({
     shadowRadius: 6.68,
     elevation: 5
   },
-  players: {
-    flexDirection:"column",
+  playersBox: {
     flex: 1,
+    marginTop: 10,
+    flexDirection: "column",
+    padding: 5,
     width: "80%",
     backgroundColor: "#fff",
     borderRadius: 15,
     alignItems: "center",
-    padding:0,
+    justifyContent: "flex-start"
   },
-  dropdown: {
-    backgroundColor: "#fff",
-    width: 180,
-    height: 40
+  listPlayers: {
+    flexGrow: 0
+  },
+  modal: {
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 20
+  },
+  iconUser: {
+    alignItems: "center",
+    width: 37,
+    height: 37,
+    borderWidth: 2,
+    borderColor:"#555",
+    borderRadius: 30,
+    marginTop: 10
   }
 });
 export default CreateTeams;

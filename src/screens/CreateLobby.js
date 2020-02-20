@@ -1,10 +1,8 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, Linking } from "react-native";
 import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { TextInput } from "react-native-gesture-handler";
-import Header from '../components/Header'
-
+import { FontAwesome , MaterialCommunityIcons, Feather} from '@expo/vector-icons';
 
 class CreateLobby extends React.Component {
   constructor() {
@@ -12,15 +10,16 @@ class CreateLobby extends React.Component {
     this.state = {
       room: "",
     };
-    this.handleChangeText = this.handleChangeText.bind(this);
+    
   }
 
-  handleChangeText(room) {
-    this.setState({
-      [name]: room
-    });
-  }
-
+  shareToWhatsApp = (text) => {
+    Linking.openURL(`whatsapp://send?text=${text}`);
+   }
+   
+   shareToEmail = (text) => {
+     Linking.openURL(`mailto:?subject=Código da Sala Decifre&body=${text}`);
+    }
   render() {
     return (
       <LinearGradient
@@ -31,18 +30,23 @@ class CreateLobby extends React.Component {
       > 
        
         <View style={styles.container}>
+          <View style={styles.roomBox}>
+          <Text style={styles.h2}> Código da Sala </Text>
+          <Text style={styles.h1} selectable={true}> XC#1234 </Text>
           <View style={styles.buttons}>
-            <TextInput
-              style={styles.input}
-              placeholder="Digite o Nome da Sala"
-              placeholderTextColor="grey"
-              onChangeText={room => this.setState({ room })}
-              value={this.state.room}
-            />
-            <TouchableOpacity style={styles.button}  onPress={()=>this.props.navigation.navigate('CreateTeams')}>
-              <Text style={styles.h1}> CRIAR SALA </Text>
+            <TouchableOpacity style={styles.button}  onPress={()=>this.shareToWhatsApp("XCh12ji1234")}>
+            <FontAwesome style={styles.iconUser} name="whatsapp" size={32} color='#aaa' />
             </TouchableOpacity>
+            <TouchableOpacity style={styles.button}  onPress={()=>this.shareToEmail('CreateTeams')}>
+            <MaterialCommunityIcons style={styles.iconUser} name="email-outline" size={32} color='#aaa' />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button}  onPress={()=>this.props.navigation.navigate('CreateTeams')}>
+            <Feather style={styles.iconUser} name="copy" size={32} color='#aaa' />
+            </TouchableOpacity>
+
           </View>
+          </View>
+
         </View>
       </LinearGradient>
     );
@@ -56,48 +60,36 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
-  buttons: {
-    width: "100%",
-    marginTop: 20,
+  roomBox: {
+    backgroundColor:"#fff",
+    height:135,
+    width: "75%",
+    padding:10,
+    borderRadius:15,
     alignContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    elevation:7
+  },
+  buttons:{
+  flexDirection:"row"
   },
   button: {
-    width: 160,
-    height: 45,
-    backgroundColor: "#fff",
-    margin: 15,
-    padding: 10,
-    borderRadius: 15,
+    marginHorizontal: 15,
     alignContent: "center",
     justifyContent: "center",
-    shadowColor: "#fff",
-    shadowOffset: {
-      width: 0,
-      height: 5
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 6.68,
-    elevation: 5
   },
   h1: {
+    color:"#37f",
+    marginVertical:8,    
+    fontSize: 30,
+    textAlign: "center",
+    fontWeight:"700",
+  },
+  h2: {
+    color:"#777",
     fontSize: 20,
     textAlign: "center"
   },
-  input: {
-    textAlign: "center",
-    fontSize: 25,
-    width: 300,
-    height: 40,
-    backgroundColor: "#fff",
-    borderRadius: 10,
-    shadowOffset: {
-      width: 0,
-      height: 5
-    },
-    shadowOpacity: 0.36,
-    shadowRadius: 6.68,
-    elevation: 5
-  }
+  
 });
 export default CreateLobby;

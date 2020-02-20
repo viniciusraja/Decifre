@@ -1,15 +1,38 @@
 import React, { Component } from 'react';
 
 import  { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { TextInput } from "react-native-gesture-handler";
+import { Feather,FontAwesome } from 'expo-vector-icons';
 
 // import { Container } from './styles';
 
 export default class CreatePlayer extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      playerName:"",
+    }
+  }
+
+
   render() {
     return (
+      
         <View style={styles.container}>
             <View style={styles.playerBox}>
-
+            <FontAwesome style={styles.iconUser} name='user-secret' size={37} color='#000' />
+            <TextInput
+              style={styles.input}
+              placeholder="Digite o Nome do jogador"
+              placeholderTextColor="grey"
+              onChangeText={playerName => this.setState( {playerName:playerName})}
+              value={this.player}
+            />
+            <TouchableOpacity>
+            <Feather style={styles.iconUser} name='check'  size={37} color='green' onPress={()=>this.props.addPlayer(this.state.playerName)}/>
+            </TouchableOpacity>
+           
             </View>
         </View>
     );
@@ -18,13 +41,30 @@ export default class CreatePlayer extends Component {
 
 const styles = StyleSheet.create({
     container: {
-           
             flex:1,
-    },
-    playerBox:{
-            backgroundColor:"#fff",
-            height:200,
             justifyContent:'center',
             alignItems:'center'
+          },
+          playerBox:{
+            backgroundColor:"#ddd",
+            flexDirection:"row",
+            height:80,
+            width:"90%",
+            borderRadius:10,
+            justifyContent:'center',
+            alignItems:'center',
+            elevation: 5
+    },
+    input:{
+      backgroundColor:"#fff",
+      height:35,
+      width:"60%",
+      borderRadius:8,
+      textAlign:"center",
+      elevation: 5
+    },
+    iconUser:{
+      marginHorizontal:10,
+      
     }
 })
