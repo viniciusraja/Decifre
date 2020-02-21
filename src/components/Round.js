@@ -1,8 +1,10 @@
 import React from "react";
-import { View, StyleSheet, TextInput, Text, Picker } from "react-native";
+import { View, StyleSheet, TextInput, Text, Dimensions} from "react-native";
 
-
+const { width: screenWidth } = Dimensions.get('window');
+const width = screenWidth ;
 export default class Round extends React.Component {
+  static WIDTH = width
   constructor(props) {
     super(props);
     this.state = {
