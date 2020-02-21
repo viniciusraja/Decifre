@@ -4,6 +4,7 @@ import { View ,Text,  ScrollView, StyleSheet, TouchableOpacity, FlatList, Dimens
 import { ScreenOrientation } from 'expo';
 
 import Round from "../components/Round"
+import RoundsHistory from "../components/RoundsHistory"
 import SideSwipe from 'react-native-sideswipe'; // 1.3.0
 
 const { width } = Dimensions.get('window');
@@ -140,11 +141,11 @@ export default class Game extends React.Component {
         <View style={styles.round}>
         <SideSwipe
         index={this.state.index}
-        itemWidth={Round.WIDTH}
+        itemWidth={Round.WIDTH+20}
         shouldCapture={() => true}
-        threshold={Round.WIDTH / 4}
+        threshold={Round.WIDTH/4}
         extractKey={item => item.round}
-        style={{ width }}
+        style={[styles.sideswipe, { width }]}
         data={this.DATA}
         contentOffset={offset}
         onIndexChange={index =>this.setState(() => ({ currentIndex: index }))}
@@ -169,6 +170,7 @@ export default class Game extends React.Component {
         
           />
         </View>
+        <RoundsHistory></RoundsHistory>
     </View>
     )}
 }
@@ -178,10 +180,16 @@ export default class Game extends React.Component {
 const styles = StyleSheet.create({
 container:{
   flex:1,
+  backgroundColor:"#555",
+
+
 },
 round:{
   
-  backgroundColor:"blue",
+  backgroundColor:"#555",
+},
+sideswipe: {
+  
 },
 roundsList:{
   

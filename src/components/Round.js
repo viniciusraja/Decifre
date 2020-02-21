@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, TextInput, Text, Dimensions} from "react-native";
 
 const { width: screenWidth } = Dimensions.get('window');
-const width = screenWidth ;
+const width = screenWidth-198 ;
 export default class Round extends React.Component {
   static WIDTH = width
   constructor(props) {
@@ -21,7 +21,7 @@ export default class Round extends React.Component {
       <View style={styles.container}>
         <View style={styles.card}>
           <View style={styles.header}>
-            <Text style={styles.h1}>Round 1</Text>
+            <Text style={styles.h1}>{width}</Text>
             <Text style={styles.correctAnswer}>4 . 2. 1</Text>
           </View>
 
@@ -65,7 +65,9 @@ export default class Round extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#aaa"
+    backgroundColor: "#555",
+    height:220,
+    justifyContent:'center',
   },
   card: {
     justifyContent: "space-evenly",
@@ -74,8 +76,7 @@ const styles = StyleSheet.create({
     width: 400,
     marginHorizontal: 10,
     paddingHorizontal: 10,
-    borderBottomRightRadius: 15,
-    borderBottomLeftRadius: 15
+    borderRadius: 20,
   },
   header: {
     flexDirection: "row",
