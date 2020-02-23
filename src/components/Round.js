@@ -1,10 +1,19 @@
 import React from "react";
 import { View, StyleSheet, TextInput, Text, Dimensions, Animated} from "react-native";
+import {PanGestureHandler, State} from 'react-native-gesture-handler'
 
 
+const translateX = new Animated.Value(0);
+const animatedEvent = Animated.event(
+    [{
+        nativeEvent:{translationX:translateX}
+    }
+  ],
+  {useNativeDriver:true}
 
+)
 export default class Round extends React.Component {
-  static WIDTH =  (Dimensions.get('window').height-400)
+  static WIDTH =  (Dimensions.get('window').screenHeight-270)
   constructor(props) {
     super(props);
     this.state = {
@@ -20,18 +29,24 @@ export default class Round extends React.Component {
     this.setState({ width: nativeEvent.layout.width });
   };
 
+onHandlerStateChange(event){}
+
   render() {
-    const { animatedValue, roundCard, index } = this.props;
     return (
       <View style={styles.container} onLayout={this.handleLayout}>
+        <PanGestureHandler
+        onGestureEvent={animatedEvent}
+        onHandlerStateChange={onHandlerStateChange()}
+        >
+
         <Animated.View
          style={[
           styles.roundCard,
           {
             transform: [
               {
-                scale: animatedValue.interpolate({
-                  inputRange: [index - 1, index, index + 1],
+                translateX:translateX.interpolate({
+                  inputRange: [this.props.id-1,this.props.id,this.props.id+1],
                   outputRange: [0.7, 1, 0.7],
                   extrapolate: 'clamp',
                 }),
@@ -80,6 +95,7 @@ export default class Round extends React.Component {
             <View style={styles.guessBox}></View>
           </View>
         </Animated.View>
+        </PanGestureHandler>
       </View>
     );
   }

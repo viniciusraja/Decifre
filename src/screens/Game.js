@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { View ,Text,  ScrollView, StyleSheet, TouchableOpacity, FlatList, Dimensions, ActivityIndicator} from 'react-native';
+import { View ,Text,  ScrollView, StyleSheet,Animated, TouchableOpacity, FlatList, Dimensions, ActivityIndicator} from 'react-native';
 import { ScreenOrientation } from 'expo';
 
 import Round from "../components/Round"
@@ -130,7 +130,7 @@ export default class Game extends React.Component {
       componentDidMount = async () => {
         await ScreenOrientation.lockAsync(ScreenOrientation.Orientation.LANDSCAPE)
         this.setState({ screenRotated: true })
-        this.setState({ width: Dimensions.get('window').height+6 })
+        
       }
       
       componentWillUnmount() {
@@ -150,27 +150,18 @@ export default class Game extends React.Component {
             </View>
           : 
     <View style={styles.container} onLayout={this.handleLayout}>
+      <Text>{this.state.width}</Text>
         <View style={styles.round}  >
-        <SideSwipe 
-        
+        <Animated.FlatList 
         data={this.DATA}
-        shouldCapture={() => true}
-        style={[styles.sideswipe, this.state.width]}
-        contentContainerStyle={{paddingTop: 10, margin :0 }}
-        itemWidth={Round.WIDTH}
-        flatListStyle={{width:this.state.width}}
-        threshold={Round.WIDTH}
-        extractKey={item => item.round}
-        contentOffset={offset}
-
-        onIndexChange={index =>this.setState(() => ({ currentIndex: index }))}
-        renderItem={({ itemIndex, currentIndex, item, animatedValue }) => (
+        keyExtractor={item => item.round}
+        horizontal={true}
+        renderItem={({ item }) =>{
+          return(
           <Round
-          roundCard={item}
-          index={itemIndex}
-          currentIndex={currentIndex}
-          animatedValue={animatedValue}
-          password1={item.password1}
+          id={item.round}
+         
+        /*   password1={item.password1}
           password2={item.password2}
           password3={item.password3}
           teamGuess1={item.teamGuess1}
@@ -178,11 +169,11 @@ export default class Game extends React.Component {
           teamGuess3={item.teamGuess3}
           answer1={item.answer1}
           answer2={item.answer2}
-          answer3={item.answer3}
+          answer3={item.answer3} */
           />
-        )}
+        )}}
         
-          />
+          />)
         </View>
         <RoundsHistory></RoundsHistory>
     </View>
@@ -193,7 +184,7 @@ export default class Game extends React.Component {
 
 const styles = StyleSheet.create({
 container:{
-  backgroundColor:"black",
+  backgroundColor:"red",
 
 
 },
