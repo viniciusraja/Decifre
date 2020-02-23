@@ -7,6 +7,7 @@ import { View, Text, StyleSheet } from 'react-native';
 export default class RoundsHistory extends Component {
   render() {
     return (
+        
     <View style={styles.container}>
         <View style={styles.item}>
             <Text style={styles.h1}>`1`</Text>
@@ -30,6 +31,8 @@ const styles= StyleSheet.create({
         backgroundColor:"#fff"
     },
     item:{
-        backgroundColor:"#ccc"
+        backgroundColor:"#ccc",
+        width:300,
+        
     }
 })

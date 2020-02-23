@@ -65,7 +65,6 @@ class CreateTeams extends React.Component {
       [name]: team
     });
   }
-  useEfect
 
   componentDidMount() {
     this.setState({ playersArray: [...this.DATA] });

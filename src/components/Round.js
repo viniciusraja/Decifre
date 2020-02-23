@@ -1,10 +1,9 @@
 import React from "react";
-import { View, StyleSheet, TextInput, Text, Dimensions} from "react-native";
+import { View, StyleSheet, TextInput, Text, Dimensions, Animated} from "react-native";
 
-const { width: screenWidth } = Dimensions.get('window');
-const width = screenWidth-198 ;
+
 export default class Round extends React.Component {
-  static WIDTH = width
+  static WIDTH =  Dimensions.get('window').height
   constructor(props) {
     super(props);
     this.state = {
@@ -12,16 +11,39 @@ export default class Round extends React.Component {
       password1: this.props.password1,
       password2: this.props.password2,
       password3: this.props.password3,
-      color: this.props.color
+      width:0
     };
   }
 
+  handleLayout = ({ nativeEvent }) => {
+    this.setState({ width: nativeEvent.layout.width });
+  };
+
   render() {
+
+    const { animatedValue, roundCard, index } = this.props;
     return (
       <View style={styles.container}>
-        <View style={styles.card}>
+        <Animated.View
+         style={[
+          styles.roundCard,
+          {
+            transform: [
+              {
+                scale: animatedValue.interpolate({
+                  inputRange: [index - 1, index, index + 1],
+                  outputRange: [1, 1.6, 1],
+                  extrapolate: 'clamp',
+                }),
+              },
+            
+            ],
+          },
+        ]}
+        
+        >
           <View style={styles.header}>
-            <Text style={styles.h1}>{width}</Text>
+            <Text style={styles.h1}>{height}</Text>
             <Text style={styles.correctAnswer}>4 . 2. 1</Text>
           </View>
 
@@ -57,7 +79,7 @@ export default class Round extends React.Component {
             />
             <View style={styles.guessBox}></View>
           </View>
-        </View>
+        </Animated.View>
       </View>
     );
   }
@@ -66,14 +88,14 @@ export default class Round extends React.Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#555",
-    height:220,
     justifyContent:'center',
+    width:this.state.width
   },
-  card: {
+  roundCard: {
     justifyContent: "space-evenly",
     backgroundColor: "#ddd",
     height: 200,
-    width: 400,
+    width: 300,
     marginHorizontal: 10,
     paddingHorizontal: 10,
     borderRadius: 20,
