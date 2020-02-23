@@ -2,8 +2,9 @@ import React from "react";
 import { View, StyleSheet, TextInput, Text, Dimensions, Animated} from "react-native";
 
 
+
 export default class Round extends React.Component {
-  static WIDTH =  Dimensions.get('window').height
+  static WIDTH =  (Dimensions.get('window').height-400)
   constructor(props) {
     super(props);
     this.state = {
@@ -11,7 +12,7 @@ export default class Round extends React.Component {
       password1: this.props.password1,
       password2: this.props.password2,
       password3: this.props.password3,
-      width:0
+      width:592,
     };
   }
 
@@ -20,10 +21,9 @@ export default class Round extends React.Component {
   };
 
   render() {
-
     const { animatedValue, roundCard, index } = this.props;
     return (
-      <View style={styles.container}>
+      <View style={styles.container} onLayout={this.handleLayout}>
         <Animated.View
          style={[
           styles.roundCard,
@@ -32,7 +32,7 @@ export default class Round extends React.Component {
               {
                 scale: animatedValue.interpolate({
                   inputRange: [index - 1, index, index + 1],
-                  outputRange: [1, 1.6, 1],
+                  outputRange: [0.7, 1, 0.7],
                   extrapolate: 'clamp',
                 }),
               },
@@ -43,7 +43,7 @@ export default class Round extends React.Component {
         
         >
           <View style={styles.header}>
-            <Text style={styles.h1}>{height}</Text>
+            <Text style={styles.h1}>{this.state.width}</Text>
             <Text style={styles.correctAnswer}>4 . 2. 1</Text>
           </View>
 
@@ -87,16 +87,17 @@ export default class Round extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex:1,
     backgroundColor: "#555",
-    justifyContent:'center',
-    width:this.state.width
+    justifyContent: 'center',
+    alignItems: 'center',
+    overflow: 'visible',
   },
   roundCard: {
     justifyContent: "space-evenly",
     backgroundColor: "#ddd",
     height: 200,
-    width: 300,
-    marginHorizontal: 10,
+    width: 320,
     paddingHorizontal: 10,
     borderRadius: 20,
   },

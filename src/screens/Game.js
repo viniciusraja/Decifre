@@ -151,20 +151,25 @@ export default class Game extends React.Component {
           : 
     <View style={styles.container} onLayout={this.handleLayout}>
         <View style={styles.round}  >
-      <Text style={styles.h1}>{this.state.width}</Text>
         <SideSwipe 
         
-        index={this.state.index}
-        itemWidth={Round.WIDTH}
-        shouldCapture={() => true}
-        threshold={Round.WIDTH/2}
-        extractKey={item => item.round}
-        style={[styles.sideswipe, this.state.width]}
         data={this.DATA}
+        shouldCapture={() => true}
+        style={[styles.sideswipe, this.state.width]}
+        contentContainerStyle={{paddingTop: 10, margin :0 }}
+        itemWidth={Round.WIDTH}
+        flatListStyle={{width:this.state.width}}
+        threshold={Round.WIDTH}
+        extractKey={item => item.round}
         contentOffset={offset}
+
         onIndexChange={index =>this.setState(() => ({ currentIndex: index }))}
         renderItem={({ itemIndex, currentIndex, item, animatedValue }) => (
           <Round
+          roundCard={item}
+          index={itemIndex}
+          currentIndex={currentIndex}
+          animatedValue={animatedValue}
           password1={item.password1}
           password2={item.password2}
           password3={item.password3}
@@ -174,11 +179,6 @@ export default class Game extends React.Component {
           answer1={item.answer1}
           answer2={item.answer2}
           answer3={item.answer3}
-            {...item}
-            roundCard={item}
-            index={itemIndex}
-            currentIndex={currentIndex}
-            animatedValue={animatedValue}
           />
         )}
         
@@ -193,7 +193,6 @@ export default class Game extends React.Component {
 
 const styles = StyleSheet.create({
 container:{
-  flex:1,
   backgroundColor:"black",
 
 
