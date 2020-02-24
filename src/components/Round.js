@@ -29,34 +29,36 @@ export default class Round extends React.Component {
     this.setState({ width: nativeEvent.layout.width });
   };
 
-onHandlerStateChange(event){}
-
+  onHandlerStateChanged(event){}
+  
   render() {
     return (
-      <View style={styles.container} onLayout={this.handleLayout}>
+      <>
         <PanGestureHandler
         onGestureEvent={animatedEvent}
-        onHandlerStateChange={onHandlerStateChange()}
+        onHandlerStateChange={this.onHandlerStateChanged()}
         >
-
+      <Animated.View style={styles.container}>
         <Animated.View
          style={[
           styles.roundCard,
           {
             transform: [
               {
-                translateX:translateX.interpolate({
-                  inputRange: [this.props.id-1,this.props.id,this.props.id+1],
+                scale:translateX.interpolate({
+                  inputRange: [-100,0,100],
                   outputRange: [0.7, 1, 0.7],
                   extrapolate: 'clamp',
                 }),
               },
+             
             
             ],
           },
         ]}
         
         >
+
           <View style={styles.header}>
             <Text style={styles.h1}>{this.state.width}</Text>
             <Text style={styles.correctAnswer}>4 . 2. 1</Text>
@@ -95,8 +97,9 @@ onHandlerStateChange(event){}
             <View style={styles.guessBox}></View>
           </View>
         </Animated.View>
+      </Animated.View>
         </PanGestureHandler>
-      </View>
+    </>
     );
   }
 }
