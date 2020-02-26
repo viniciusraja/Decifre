@@ -18,16 +18,6 @@ import RoundsHistory from "../components/RoundsHistory";
 import {PanGestureHandler, State} from 'react-native-gesture-handler'
 
 
-const translateX = new Animated.Value(0);
-const animatedEvent = Animated.event(
-    [{
-        nativeEvent:{translationX:translateX}
-    }
-  ],
-  {useNativeDriver:true}
-
-)
-
 export default class Game extends React.Component {
   constructor(props) {
     super(props);
@@ -136,6 +126,8 @@ export default class Game extends React.Component {
       sreenRotated: false,
       width: 0
     };
+    this.handleViewableItemsChanged = this.handleViewableItemsChanged.bind(this)
+    this.viewabilityConfig = {viewAreaCoveragePercentThreshold: 50}
   };
 
   componentDidMount = async () => {
@@ -147,7 +139,9 @@ export default class Game extends React.Component {
     ScreenOrientation.lockAsync(ScreenOrientation.Orientation.PORTRAIT);
   };
 
-  onHandlerStateChanged(event){};
+  handleViewableItemsChanged(info) {
+    console.log(info)
+}
 
 
   render() {
@@ -163,25 +157,19 @@ export default class Game extends React.Component {
     ) : (
       <View style={styles.container}>
         <View style={styles.round}>
-        <PanGestureHandler
-        onGestureEvent={animatedEvent}
-        onHandlerStateChange={this.onHandlerStateChanged()}
-        >
-
-        <Animated.FlatList 
+        
+        <FlatList 
         data={this.DATA}
         keyExtractor={item => item.round}
         horizontal={true}
+     
         renderItem={({ item }) =>{
           return(
           <Round
           id={item.round}
-         
-        
+          
           />
-          )}}
-          />
-          </PanGestureHandler>
+          )}}/>
           </View>
         <RoundsHistory></RoundsHistory>
       </View>
@@ -192,7 +180,7 @@ export default class Game extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex:1,
-    backgroundColor: "red",
+    backgroundColor: "blue",
 
   },
   round: {

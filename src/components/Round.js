@@ -23,22 +23,30 @@ export default class Round extends React.Component {
       password3: this.props.password3,
       width:592,
     };
+
+    
   }
 
   handleLayout = ({ nativeEvent }) => {
     this.setState({ width: nativeEvent.layout.width });
   };
 
-  onHandlerStateChanged(event){}
+  onHandlerStateChanged(event){
+    if(event.nativeEvent.oldState==State.ACTIVE){
+      const {translationX}=event.nativeEvent
+
+      offset+=translationX
+      translateX.setOffset(offset)
+      translateX.setValue(0)
+    }
+  }
   
   render() {
     return (
       <>
         <PanGestureHandler
         onGestureEvent={animatedEvent}
-        onHandlerStateChange={this.onHandlerStateChanged()}
         >
-      <Animated.View style={styles.container}>
         <Animated.View
          style={[
           styles.roundCard,
@@ -47,11 +55,11 @@ export default class Round extends React.Component {
               {
                 scale:translateX.interpolate({
                   inputRange: [-100,0,100],
-                  outputRange: [0.7, 1, 0.7],
+                  outputRange: [0.9, 1, 0.9],
                   extrapolate: 'clamp',
                 }),
-              },
-             
+                translateX,
+              }          
             
             ],
           },
@@ -97,7 +105,6 @@ export default class Round extends React.Component {
             <View style={styles.guessBox}></View>
           </View>
         </Animated.View>
-      </Animated.View>
         </PanGestureHandler>
     </>
     );
