@@ -1,17 +1,7 @@
 import React from "react";
 import { View, StyleSheet, TextInput, Text, Dimensions, Animated} from "react-native";
-import {PanGestureHandler, State} from 'react-native-gesture-handler'
 
 
-const translateX = new Animated.Value(0);
-const animatedEvent = Animated.event(
-    [{
-        nativeEvent:{translationX:translateX}
-    }
-  ],
-  {useNativeDriver:true}
-
-)
 export default class Round extends React.Component {
   static WIDTH =  (Dimensions.get('window').screenHeight-270)
   constructor(props) {
@@ -27,46 +17,13 @@ export default class Round extends React.Component {
     
   }
 
-  handleLayout = ({ nativeEvent }) => {
-    this.setState({ width: nativeEvent.layout.width });
-  };
 
-  onHandlerStateChanged(event){
-    if(event.nativeEvent.oldState==State.ACTIVE){
-      const {translationX}=event.nativeEvent
 
-      offset+=translationX
-      translateX.setOffset(offset)
-      translateX.setValue(0)
-    }
-  }
   
   render() {
     return (
       <>
-        <PanGestureHandler
-        onGestureEvent={animatedEvent}
-        >
-        <Animated.View
-         style={[
-          styles.roundCard,
-          {
-            transform: [
-              {
-                scale:translateX.interpolate({
-                  inputRange: [-100,0,100],
-                  outputRange: [0.9, 1, 0.9],
-                  extrapolate: 'clamp',
-                }),
-                translateX,
-              }          
-            
-            ],
-          },
-        ]}
-        
-        >
-
+        <View style={styles.roundCard}>
           <View style={styles.header}>
             <Text style={styles.h1}>{this.state.width}</Text>
             <Text style={styles.correctAnswer}>4 . 2. 1</Text>
@@ -104,8 +61,7 @@ export default class Round extends React.Component {
             />
             <View style={styles.guessBox}></View>
           </View>
-        </Animated.View>
-        </PanGestureHandler>
+        </View>
     </>
     );
   }
@@ -124,7 +80,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#ddd",
     height: 200,
     width: 320,
-    paddingHorizontal: 10,
+    marginVertical:10,
+    padding:0,
+    paddingHorizontal:10,
     borderRadius: 20,
   },
   header: {
@@ -133,21 +91,25 @@ const styles = StyleSheet.create({
   },
   password: {
     flexDirection: "row",
-    justifyContent: "space-evenly"
+    justifyContent: "space-between"
   },
   input: {
     height: 40,
     width: "70%",
     textAlign: "center",
     backgroundColor: "#fff",
-    borderRadius: 10
+    borderRadius: 15
   },
   guessBox: {
     backgroundColor: "#fff",
     height: 40,
-    width: 40
+    width: 60,
+    borderRadius:15,
   },
   correctAnswer: {
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
+    width:60,
+    borderRadius:15,
+    textAlign:'center'
   }
 });

@@ -1,39 +1,133 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
-import SideSwipe from 'react-native-sideswipe';
+import Carousel from 'react-native-snap-carousel';
 
-/* import CustomComponent from '...'
-import data from '...'
- */
-export default class SweetCarousel extends React.Component {
-  state = {
-    currentIndex: 0,
+import Round from '../components/Round'
+
+export class CarouselComponent extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.DATA = [
+      {
+        round: "1",
+        password1: "",
+        password2: "",
+        password3: "",
+        teamGuess1: "",
+        teamGuess2: "",
+        teamGuess3: "",
+        answer1: "",
+        answer2: "",
+        answer3: ""
+      },
+      {
+        round: "2",
+        password1: "",
+        password2: "",
+        password3: "",
+        teamGuess1: "",
+        teamGuess2: "",
+        teamGuess3: "",
+        answer1: "",
+        answer2: "",
+        answer3: ""
+      },
+      {
+        round: "3",
+        password1: "",
+        password2: "",
+        password3: "",
+        teamGuess1: "",
+        teamGuess2: "",
+        teamGuess3: "",
+        answer1: "",
+        answer2: "",
+        answer3: ""
+      },
+      {
+        round: "4",
+        password1: "",
+        password2: "",
+        password3: "",
+        teamGuess1: "",
+        teamGuess2: "",
+        teamGuess3: "",
+        answer1: "",
+        answer2: "",
+        answer3: ""
+      },
+      {
+        round: "5",
+        password1: "",
+        password2: "",
+        password3: "",
+        teamGuess1: "",
+        teamGuess2: "",
+        teamGuess3: "",
+        answer1: "",
+        answer2: "",
+        answer3: ""
+      },
+      {
+        round: "6",
+        password1: "",
+        password2: "",
+        password3: "",
+        teamGuess1: "",
+        teamGuess2: "",
+        teamGuess3: "",
+        answer1: "",
+        answer2: "",
+        answer3: ""
+      },
+      {
+        round: "7",
+        password1: "",
+        password2: "",
+        password3: "",
+        teamGuess1: "",
+        teamGuess2: "",
+        teamGuess3: "",
+        answer1: "",
+        answer2: "",
+        answer3: ""
+      },
+      {
+        round: "8",
+        password1: "",
+        password2: "",
+        password3: "",
+        teamGuess1: "",
+        teamGuess2: "",
+        teamGuess3: "",
+        answer1: "",
+        answer2: "",
+        answer3: ""
+      }
+    ];
+
+    this.state = {
+    };
   };
 
-  render = () => {
-    // center items on screen
-    const { width } = Dimensions.get('window');
-    const contentOffset = (width - CustomComponent.WIDTH) / 2;
 
-    return (
-      <SideSwipe
-        index={this.state.currentIndex}
-        itemWidth={CustomComponent.WIDTH}
-        style={{ width }}
-        data={data}
-        contentOffset={contentOffset}
-        onIndexChange={index =>
-          this.setState(() => ({ currentIndex: index }))
-        }
-        renderItem={({ itemIndex, currentIndex, item, animatedValue }) => (
-         <CustomComponent
-            {...item}
-            index={itemIndex}
-            currentIndex={currentIndex}
-            animatedValue={animatedValue}
+  _renderItem = ({item, index}) => {
+      return (
+          <Round/>
+      );
+  }
+
+  render () {
+      return (
+          <Carousel
+            ref={(c) => { this._carousel = c; }}
+            data={this.DATA}
+            renderItem={this._renderItem}
+            sliderWidth={590}
+            itemWidth={320}
+            layout={'default'} 
           />
-        )}
-      />
-    );
-  };
+      );
+  }
 }

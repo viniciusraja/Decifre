@@ -10,16 +10,16 @@ export default class RoundsHistory extends Component {
         
     <View style={styles.container}>
         <View style={styles.item}>
-            <Text style={styles.h1}>`1`</Text>
+            <Text style={styles.h1}>{`1: àbobora, \nmelão,\ncarro, \nprincesa`}</Text>
         </View>
         <View style={styles.item}>
-            <Text style={styles.h1}>`2`</Text>
+            <Text style={styles.h1}>{`1: àbobora, \nmelão,\ncarro, \nprincesa`}</Text>
         </View>
         <View style={styles.item}>
-            <Text style={styles.h1}>`3`</Text>
+            <Text style={styles.h1}>{`1: àbobora, \nmelão,\ncarro, \nprincesa`}</Text>
         </View>
         <View style={styles.item}>
-            <Text style={styles.h1}>`4`</Text>
+            <Text style={styles.h1}>{`1: àbobora, \nmelão,\ncarro, \nprincesa`}</Text>
         </View>
     </View>
     )}
@@ -27,12 +27,20 @@ export default class RoundsHistory extends Component {
 
 const styles= StyleSheet.create({
     container:{
-        flexWrap:'wrap',
-        backgroundColor:"#fff"
+        flexDirection:'row',
+        backgroundColor:"#fff",
+        height:90,
     },
     item:{
         backgroundColor:"#ccc",
-        width:300,
+        width:'25%',
+        padding:5,
+        borderWidth:1.5,
+        borderColor:'#fff'
         
+    },
+    h1:{
+        fontSize:15,
+        textAlign:'right'
     }
 })
