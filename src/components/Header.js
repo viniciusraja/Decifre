@@ -22,10 +22,8 @@ export default class Header extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-            backgroundColor:"#aaa",
-            height:45,
+            height:35,
             flexDirection:'row',
-            width:"100%",
             justifyContent:'flex-start',
             alignItems:'flex-end',
             
@@ -39,7 +37,6 @@ const styles = StyleSheet.create({
       marginLeft:10
     },
     iconUser:{
-      backgroundColor:"#777",
       height:45,
       width:45,
       justifyContent:"center",

@@ -21,7 +21,8 @@ const AppNavigator= createStackNavigator({
     CreateLobby:{
         screen:CreateLobby,
         navigationOptions:{
-            header:(navigation,screenprops)=><Header name="back" screen="Criar Sala"  {...navigation} {...screenprops}/>,
+            header:(navigation,screenprops)=><Header name="back" screen="Criar Sala"  {...navigation} {...screenprops}/>
+            
         },
     
     }, 

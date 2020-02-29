@@ -9,9 +9,9 @@ class Instructions extends React.Component {
   render() {
     return (
       <LinearGradient
-      colors={[ "#1a0033","#330066","#002699"]}
-        start={[0, 0]}
-        end={[1, 1.5]}
+      colors={[ "#458299","#23414D"]}
+      start={[0, 0]}
+      end={[0, 0.8]}
         style={{ flex: 1}}
       >
         <View style={styles.container}>

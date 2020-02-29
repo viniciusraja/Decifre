@@ -9,9 +9,9 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <LinearGradient
-      colors={[ "#1a0033","#330066","#002699"]}
+      colors={[ "#458299","#23414D"]}
       start={[0, 0]}
-      end={[1, 1.5]}
+      end={[0, 0.8]}
       style={{ flex: 1}}
       >
         <View style={styles.container}>
@@ -38,42 +38,45 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection:"column",
-    justifyContent: "flex-end",
+    justifyContent: "center",
     alignItems: "center",
   },
   buttons: {
-    marginBottom:10,
+    marginTop:50,
     width:'100%',
     alignItems: "center",
     justifyContent:"space-around"
 
   },
   button: {
-    margin:10,
-    width:'65%',
-    height:60,
-    backgroundColor: "#fff",
+    marginVertical:5,
+    justifyContent:'center',
+    width:248,
+    backgroundColor:"transparent",
+    height:32,
     padding: 10,
-    borderRadius:20,
-    shadowColor: "#000",
+    borderWidth:1.5,
+    borderColor:"#4A6F82",
+    borderRadius:30,
+    shadowColor: "#fff",
     shadowOffset: {
       width: 2,
       height: 5
     },
     shadowOpacity: 0.5,
     shadowRadius: 6.68,
-    elevation: 8
   },
   h1: {
-    fontSize: 80,
+    fontSize: 50,
     color:"#fff",
     textAlign: "center",
     marginBottom:80
   },
   h2: {
-    fontSize: 25,
-   
-    textAlign: "center"
+    fontSize: 18,
+    color:'#fff',
+    textAlign: "center",
+    justifyContent:'center'
   }
 });
 export default HomeScreen;
