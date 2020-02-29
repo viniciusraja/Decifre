@@ -3,8 +3,15 @@ import { Text, View, Linking } from "react-native";
 import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome , MaterialCommunityIcons, Feather} from '@expo/vector-icons';
-
+import {connect} from 'react-redux'
+import Header from '../components/Header'
 class CreateLobby extends React.Component {
+  static navigationOptions = {
+    title: 'Chat',
+    headerStyle: { backgroundColor: 'red' },
+    headerTitleStyle: { color: 'green' },
+  }
+
   constructor() {
     super();
     this.state = {
@@ -21,6 +28,7 @@ class CreateLobby extends React.Component {
      Linking.openURL(`mailto:?subject=Código da Sala Decifre&body=${text}`);
     }
   render() {
+    console.log(this.props.navigation.actions.goBack)
     return (
       <LinearGradient
       colors={[ "#458299","#23414D"]}
@@ -28,7 +36,7 @@ class CreateLobby extends React.Component {
       end={[0, 0.8]}
         style={{ flex: 1}}
       > 
-       
+        <Header goBack={this.props.navigation.actions.goBack}/>
         <View style={styles.container}>
           <View style={styles.roomBox}>
           <Text style={styles.h2}> Código da Sala </Text>
@@ -92,4 +100,11 @@ const styles = StyleSheet.create({
   },
   
 });
-export default CreateLobby;
+
+const mapStateToProps = state =>{
+  return{
+    players:state.playerReducer.playersList  
+  }
+}
+
+export default connect(mapStateToProps)(CreateLobby);

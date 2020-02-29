@@ -21,33 +21,36 @@ const AppNavigator= createStackNavigator({
     CreateLobby:{
         screen:CreateLobby,
         navigationOptions:{
-            header:(navigation,screenprops)=><Header name="back" screen="Criar Sala"  {...navigation} {...screenprops}/>
-            
+            header:(navigation,screenprops)=><Header name="back" screen="Jogadores" nameIcon2="adduser" {...navigation} {...screenprops} />,
         },
     
     }, 
     SignInLobby:{
         screen:SignInLobby,
         navigationOptions:{
-            header:(navigation,screenprops)=><Header name="back" screen="Entrar Na Sala"  {...navigation} {...screenprops}/>,
+            headerShown: false,
+
         },
     }, 
     Instructions:{
         screen:Instructions,
         navigationOptions:{
-            header:(navigation,screenprops)=><Header name="back" screen="Instruções"  {...navigation} {...screenprops}/>,
+            headerShown: false,
+
         },
     }, 
     CreateTeams:{
         screen:CreateTeams,
         navigationOptions:{
-            header:(navigation,screenprops)=><Header name="back" screen="Jogadores" nameIcon2="adduser" {...navigation} {...screenprops} />,
+            headerShown: false,
+            
         },
     }, 
     Game:{
         screen:Game,
         navigationOptions:{
-            header:(navigation,screenprops)=><Header name="back" screen="Jogadores" nameIcon2="adduser" {...navigation} {...screenprops} />,
+            headerShown: false,
+            
         },
     }, 
 })

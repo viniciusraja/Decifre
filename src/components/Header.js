@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
-import { AntDesign } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {connect} from 'react-redux'
+import { useNavigation } from '@react-navigation/native';
 
-
-
-export default class Header extends React.Component {
+const navigate= useNavigation
+class Header extends React.Component {
+  state = {
+    fontLoaded: false,
+  };
   render() {
-      return (
+    return (
         <>
         <View style={styles.container}>
         <View style={styles.iconUser}>
-        <AntDesign  name={this.props.name} size={32} color='#ddd' onPress={() => this.props.navigation.goBack()}/>
+        <MaterialIcons  name={'keyboard-arrow-left'} size={32} color='#315161' onPress={() => navigate.goBack()}/>
         </View>
         <Text style={styles.h1}>{this.props.screen}</Text>
         </View>
@@ -22,11 +26,11 @@ export default class Header extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-            height:35,
+            height:45,
             flexDirection:'row',
             justifyContent:'flex-start',
             alignItems:'flex-end',
-            
+            borderRadius:30,
          
     },
     h1: {
@@ -34,15 +38,15 @@ const styles = StyleSheet.create({
       flex:1,
       color:"#fff",
       marginVertical:10,
-      marginLeft:10
-    },
-    iconUser:{
-      height:45,
-      width:45,
-      justifyContent:"center",
-      alignItems:"center",
-      borderRightWidth:2,
-      borderRightColor:"#ccc",
+      marginLeft:10,
     }
     
     })
+
+    const mapStateToProps = state =>{
+      return{
+        players:state.playerReducer.playersList  
+      }
+    }
+    
+    export default connect(mapStateToProps) (Header)

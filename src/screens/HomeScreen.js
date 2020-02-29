@@ -2,6 +2,8 @@ import React from "react";
 import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import { LinearGradient } from "expo-linear-gradient";
 class HomeScreen extends React.Component {
+  
+
 
   render() {
     return (
@@ -60,29 +62,26 @@ const styles = StyleSheet.create({
     marginTop:15,
     width:'100%',
     alignItems: "center",
-    justifyContent:"space-around"
+    justifyContent:"space-around",
 
   },
   button: {
     marginVertical:5,
     justifyContent:'center',
     width:248,
-    backgroundColor:"transparent",
+    backgroundColor:"#335b65",
+    backgroundColor:"#2b4e57",
     height:32,
     padding: 10,
     borderWidth:1.5,
-    borderColor:"#4A6F82",
+    borderColor:"#315161",
     borderRadius:30,
-    shadowColor: "#fff",
-    shadowOffset: {
-      width: 2,
-      height: 5
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 6.68,
+    elevation:5
+
   },
    h2: {
     fontSize: 18,
+    fontFamily:'orbitron-regular',
     color:'#fff',
     textAlign: "center",
     justifyContent:'center'

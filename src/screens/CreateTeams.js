@@ -151,7 +151,7 @@ class CreateTeams extends React.Component {
                   style={styles.iconUser}
                   onPress={() => this.setModal()}
                 >
-                  <AntDesign name="adduser" size={30} color="#aaa" />
+                  <AntDesign name="adduser" size={30} color="#aaayarn" />
                 </TouchableOpacity>
               )}
             </View>
