@@ -2,9 +2,12 @@ import React from 'react';
 import { Feather,FontAwesome } from 'expo-vector-icons';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
+import {connect} from 'react-redux'
+import {addPlayer, deletePlayer} from '../ducks/actions/players'
 
 
-export default class Player extends React.Component {
+
+class Player extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -68,3 +71,19 @@ const styles = StyleSheet.create({
        marginLeft: 10 
     }
     })
+
+
+
+    const mapStateToProps = state => ({
+      players:state.playerReducer.playersList  
+  })
+  
+  const mapDispatchToProps = dispatch =>{
+      return{
+        add:(name, index)=> dispatch(addPlayer(name,index)),
+        delete:(name,index)=>dispatch(deletePlayer(name,index))
+      }
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Player);
+   

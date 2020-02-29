@@ -4,9 +4,11 @@ import  { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { TextInput } from "react-native-gesture-handler";
 import { Feather,FontAwesome } from 'expo-vector-icons';
 
-// import { Container } from './styles';
 
-export default class CreatePlayer extends Component {
+import {connect} from 'react-redux'
+import {addPlayer, deletePlayer} from '../ducks/actions/players'
+
+class CreatePlayer extends Component {
 
   constructor(props) {
     super(props);
@@ -30,7 +32,7 @@ export default class CreatePlayer extends Component {
               value={this.player}
             />
             <TouchableOpacity>
-            <Feather style={styles.iconUser} name='check'  size={37} color='green' onPress={()=>this.props.addPlayer(this.state.playerName)}/>
+            <Feather style={styles.iconUser} name='check'  size={37} color='green' onPress={()=>this.props.add(this.state.playerName)}/>
             </TouchableOpacity>
            
             </View>
@@ -68,3 +70,19 @@ const styles = StyleSheet.create({
       
     }
 })
+
+
+
+const mapStateToProps = state => ({
+  players:state.playerReducer.playersList  
+})
+
+const mapDispatchToProps = dispatch =>{
+  return{
+    add:(name, index)=> dispatch(addPlayer(name,index)),
+    delete:(name,index)=>dispatch(deletePlayer(name,index))
+  }
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreatePlayer);

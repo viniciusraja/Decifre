@@ -37,7 +37,6 @@ const styles= StyleSheet.create({
         padding:5,
         borderWidth:1.5,
         borderColor:'#fff'
-        
     },
     h1:{
         fontSize:15,

@@ -11,6 +11,9 @@ import { LinearGradient } from "expo-linear-gradient";
 import { TextInput } from "react-native-gesture-handler";
 import { AntDesign, MaterialCommunityIcons } from "expo-vector-icons";
 
+import {connect} from 'react-redux'
+import {addPlayer, deletePlayer} from '../ducks/actions/players'
+
 import Player from "../components/Player";
 import CreatePlayer from "../components/CreatePlayer";
 class CreateTeams extends React.Component {
@@ -95,6 +98,7 @@ class CreateTeams extends React.Component {
     this.setState({ modalVisible: !this.state.modalVisible });
   }
   render() {
+    console.log(this.props)
     return (
       <LinearGradient
         colors={["#1a0033", "#330066", "#002699"]}
@@ -126,7 +130,7 @@ class CreateTeams extends React.Component {
           <View style={styles.playersBox}>
             <FlatList
               style={styles.listPlayers}
-              data={this.state.playersArray}
+              data={this.props.players}
               renderItem={({ item }) => {
                 if (item.playerName == "") return null;
                 return (
@@ -233,4 +237,21 @@ const styles = StyleSheet.create({
     marginTop: 10
   }
 });
-export default CreateTeams;
+
+ const mapStateToProps = state =>{
+
+  return{
+    players:state.playerReducer.playersList  
+  }
+}
+
+const mapDispatchToProps = dispatch =>{
+    return{
+      add:(name, index)=> dispatch(addPlayer(name,index)),
+      delete:(name,index)=>dispatch(deletePlayer(name,index))
+    }
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateTeams);
+ 
