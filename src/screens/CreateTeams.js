@@ -110,7 +110,7 @@ class CreateTeams extends React.Component {
           <TextInput
             style={styles.input}
             placeholder="Nome do seu Time"
-            placeholderTextColor="grey"
+            placeholderTextColor="#aaa"
             onChangeText={team => this.setState({ team })}
             value={this.state.team}
           />
@@ -127,7 +127,6 @@ class CreateTeams extends React.Component {
             />
           </Modal>
 
-          <View style={styles.playersBox}>
             <FlatList
               style={styles.listPlayers}
               data={this.props.players}
@@ -152,13 +151,12 @@ class CreateTeams extends React.Component {
                   style={styles.iconUser}
                   onPress={() => this.setModal()}
                 >
-                  <AntDesign name="adduser" size={30} color="#555" />
+                  <AntDesign name="adduser" size={30} color="#aaa" />
                 </TouchableOpacity>
               )}
             </View>
-          </View>
             <TouchableOpacity style={styles.playButton}  onPress={()=>{this.props.navigation.navigate('Game') }}>
-               <MaterialCommunityIcons  name="play-speed" size={75} color='#ddd' />
+               <MaterialCommunityIcons  name="play-speed" size={75} color='#ccc' />
             </TouchableOpacity>
            
         </View>
@@ -174,14 +172,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     textAlign: "center",
-    shadowColor: "#fff",
-    shadowOffset: {
-      width: 0,
-      height: 5
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 6.68,
-    elevation: 15
+   
   },
 
   playButton: {
@@ -194,33 +185,16 @@ const styles = StyleSheet.create({
   },
   input: {
     textAlign: "center",
-    fontSize: 20,
+    fontSize: 18,
     marginVertical: 20,
     width: "80%",
-    height: 40,
-    backgroundColor: "#fff",
-    borderRadius: 10,
-    shadowOffset: {
-      width: 0,
-      height: 5
-    },
-    shadowOpacity: 0.36,
-    shadowRadius: 6.68,
-    elevation: 5
-  },
-  playersBox: {
-    flex: 1,
-    marginTop: 10,
-    flexDirection: "column",
-    padding: 5,
-    width: "80%",
-    backgroundColor: "#fff",
-    borderRadius: 15,
-    alignItems: "center",
-    justifyContent: "flex-start"
+    height: 35,
+    borderWidth:2,
+    borderRadius:20,
+    borderColor:'#4A6F82'
   },
   listPlayers: {
-    flexGrow: 0
+    flexGrow: 1
   },
   modal: {
     alignItems: "center",
@@ -232,7 +206,7 @@ const styles = StyleSheet.create({
     width: 37,
     height: 37,
     borderWidth: 2,
-    borderColor:"#555",
+    borderColor:"#ccc",
     borderRadius: 30,
     marginTop: 10
   }

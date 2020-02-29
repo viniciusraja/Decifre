@@ -1,9 +1,6 @@
 import React from "react";
-import { Text, View } from "react-native";
-import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import { LinearGradient } from "expo-linear-gradient";
-import Header from '../components/Header'
-
 class HomeScreen extends React.Component {
 
   render() {
@@ -15,7 +12,13 @@ class HomeScreen extends React.Component {
       style={{ flex: 1}}
       >
         <View style={styles.container}>
-          <Text style={styles.h1}>Decifre</Text>
+          <View style={{height:200,width:200}}>
+          <Image source={require('../../assets/logo.png')} style={styles.logo} resizeMode="contain"/>
+          </View>
+          <View style={{height:70,width:230}}>
+          <Image source={require('../../assets/title.png')} style={styles.title} resizeMode="contain"/>
+          </View>
+          
           <View style={styles.buttons}>
           
           <TouchableOpacity style={styles.button} onPress={()=>this.props.navigation.navigate('CreateLobby')}>
@@ -41,8 +44,20 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  logo:{
+    flex: 1,
+    alignSelf: 'stretch',
+    width: undefined,
+    height: undefined
+    },
+  title:{
+    flex: 1,
+    alignSelf: 'stretch',
+    width: undefined,
+    height: undefined
+  },
   buttons: {
-    marginTop:50,
+    marginTop:15,
     width:'100%',
     alignItems: "center",
     justifyContent:"space-around"
@@ -66,13 +81,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 6.68,
   },
-  h1: {
-    fontSize: 50,
-    color:"#fff",
-    textAlign: "center",
-    marginBottom:80
-  },
-  h2: {
+   h2: {
     fontSize: 18,
     color:'#fff',
     textAlign: "center",
