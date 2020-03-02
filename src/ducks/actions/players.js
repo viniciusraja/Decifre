@@ -3,7 +3,7 @@ import{ADD_PLAYER,DELETE_PLAYER} from './types'
 
 export function addPlayer(name,index){
     return{
-        type:ADD_PLAYER,
+        type:'ADD_PLAYER',
         name:name,
         index:index,
     }
@@ -11,7 +11,8 @@ export function addPlayer(name,index){
 
 export function deletePlayer(index){
     return{
-        type:DELETE_PLAYER,
+        type:'DELETE_PLAYER',
+        name:name,
         index:index,
     }
 }

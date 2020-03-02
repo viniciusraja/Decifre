@@ -69,14 +69,13 @@ const styles = StyleSheet.create({
     marginVertical:5,
     justifyContent:'center',
     width:248,
-    backgroundColor:"#335b65",
     backgroundColor:"#2b4e57",
     height:32,
     padding: 10,
     borderWidth:1.5,
-    borderColor:"#315161",
+    borderColor:"#335b65",
     borderRadius:30,
-    elevation:5
+    elevation:6
 
   },
    h2: {

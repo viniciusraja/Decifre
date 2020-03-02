@@ -98,7 +98,6 @@ class CreateTeams extends React.Component {
     this.setState({ modalVisible: !this.state.modalVisible });
   }
   render() {
-    console.log(this.props)
     return (
       <LinearGradient
       colors={[ "#458299","#23414D"]}
@@ -124,8 +123,11 @@ class CreateTeams extends React.Component {
           >
             <CreatePlayer
               addPlayer={this.addPlayer.bind(this)}
+              modal={this.setModal.bind(this)}
             />
           </Modal>
+          <View style={styles.playersBox}>
+
 
             <FlatList
               style={styles.listPlayers}
@@ -144,16 +146,17 @@ class CreateTeams extends React.Component {
               keyExtractor={item => item.id}
               extraData={this.state.playersArray}
             />
-
             <View onLayout={this.handleLayout}>
-              {this.state.y < 290 && (
+              {this.state.y < 280 ?
                 <TouchableOpacity
-                  style={styles.iconUser}
-                  onPress={() => this.setModal()}
+                style={styles.iconUser}
+                onPress={() => this.setModal()}
                 >
-                  <AntDesign name="adduser" size={30} color="#aaayarn" />
+                  <AntDesign name="adduser" size={30} color="#ccc" />
                 </TouchableOpacity>
-              )}
+                :<View/>  
+              }
+            </View>
             </View>
             <TouchableOpacity style={styles.playButton}  onPress={()=>{this.props.navigation.navigate('Game') }}>
                <MaterialCommunityIcons  name="play-speed" size={75} color='#ccc' />
@@ -162,6 +165,7 @@ class CreateTeams extends React.Component {
         </View>
       </LinearGradient>
     );
+    
   }
 }
 
@@ -178,6 +182,15 @@ const styles = StyleSheet.create({
   playButton: {
     marginVertical:15,
   },
+    playersBox: {
+      flex: 1,
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "flex-start"
+    },
+    listPlayers: {
+      flexGrow: 0
+    },
   h1: {
     fontSize: 20,
     textAlign: "center",
@@ -193,9 +206,7 @@ const styles = StyleSheet.create({
     borderRadius:20,
     borderColor:'#4A6F82'
   },
-  listPlayers: {
-    flexGrow: 1
-  },
+ 
   modal: {
     alignItems: "center",
     justifyContent: "center",
