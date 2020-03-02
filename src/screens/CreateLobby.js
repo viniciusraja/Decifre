@@ -39,8 +39,8 @@ class CreateLobby extends React.Component {
         <Header goBack={this.props.navigation.actions.goBack}/>
         <View style={styles.container}>
           <View style={styles.roomBox}>
-          <Text style={styles.h2}> Código da Sala </Text>
-          <Text style={styles.h1} selectable={true}> XC#1234 </Text>
+          <Text style={styles.h2}> CÓDIGO DA SALA </Text>
+          <Text style={styles.h1} selectable={true}> XC452782 </Text>
           <View style={styles.buttons}>
             <TouchableOpacity style={styles.button}  onPress={()=>this.shareToWhatsApp("XCh12ji1234")}>
             <FontAwesome style={styles.iconUser} name="whatsapp" size={32} color='#aaa' />
@@ -69,33 +69,37 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   roomBox: {
-    backgroundColor:"#fff",
-    height:135,
-    width: "75%",
+    backgroundColor:"#2b4e57",
+    borderWidth:1.5,
+    borderColor:'#436383',
+    height:152,
+    width: 248,
     padding:10,
     borderRadius:15,
     alignContent: "center",
     alignItems: "center",
-    elevation:7
+    elevation:7,
+    justifyContent: "space-around",
   },
   buttons:{
-  flexDirection:"row"
+  flexDirection:"row",
   },
   button: {
     marginHorizontal: 15,
-    alignContent: "center",
     justifyContent: "center",
+
   },
   h1: {
-    color:"#37f",
+    fontFamily:'orbitron-regular',
+    color:'#638393',
     marginVertical:8,    
-    fontSize: 30,
+    fontSize: 25,
     textAlign: "center",
-    fontWeight:"700",
   },
   h2: {
-    color:"#777",
-    fontSize: 20,
+    fontFamily:'orbitron-regular',
+    color:'#638393',
+    fontSize: 18,
     textAlign: "center"
   },
   
