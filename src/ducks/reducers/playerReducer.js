@@ -1,38 +1,28 @@
 import {ADD_PLAYER, DELETE_PLAYER} from '../actions/types'
 
 const initialState={
-    playersList:[
-      {
-        playerName: "",
-      },
-      {
-        playerName: "Viníciu",
-      },
-      {
-        playerName: "juaou",
-      },
-      {
-        playerName: "alogalera",
-      },
-      {
-        playerName: "sdv",
-      }
-    ]
+  playersList:[
+  
+  ]
 }
 
 const playerReducer =(state=initialState, action)=>{
-  console.log(playerReducer)
     switch(action.type){
         case 'ADD_PLAYER':
-            return{...state,
-            playersList:state.playersList.concat( {playerName:'ssda'})
-                         
-            }
+          return {
+            ...state,
+            playersList:[ ...state.playersList,
+                          {id:action.player.id,playerName:action.player.playerName},
+                        ]
+          }
         case 'DELETE_PLAYER':
-            return{...state,
-                playersList:{...state.playersList,
-                             ...state.playersList[action.index].playersName="",
-                }}
+          
+            return{
+              ...state,
+              playersList:[ 
+                 ...state.playersList.filter((item => item.playerName !== action.player.playerName))
+                ]
+                }
         default:
             return state;
 

@@ -9,7 +9,7 @@ class Player extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pos: this.props.pos,
+      pos: this.props.id,
       playerName: this.props.playerName,
       color: this.props.color
     };
@@ -33,7 +33,7 @@ class Player extends React.Component {
             name="x"
             size={33}
             color="#aaa"
-            onPress={() => this.props.delete(this.state.pos)}
+            onPress={() =>  this.props.delete({id:`${this.props.id}`,playerName:this.props.playerName})}
           />
         </TouchableOpacity>
        </View>
@@ -76,8 +76,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    add: (name, index) => dispatch(addPlayer(name, index)),
-    delete: (name, index) => dispatch(deletePlayer(name, index))
+    add: (player) => dispatch(addPlayer(player)),
+    delete: (player) => dispatch(deletePlayer(player))
   };
 };
 

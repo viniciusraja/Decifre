@@ -20,41 +20,7 @@ class CreateTeams extends React.Component {
   constructor(props) {
     super(props);
 
-    this.DATA = [
-      {
-        pos: 0,
-        id: "1",
-        playerName: "",
-        color: "#300066"
-      },
-      {
-        pos: 1,
-        id: "2",
-        playerName: "Viníciu",
-        color: "#5900b3"
-      },
-      {
-        pos: 2,
-        id: "3",
-        playerName: "",
-        color: "#8c1aff"
-      },
-      {
-        pos: 3,
-        id: "4",
-        playerName: "",
-        color: "#b366ff"
-      },
-      {
-        pos: 4,
-        id: "5",
-        playerName: "sdv",
-        color: "#bb80ff"
-      }
-    ];
-
     this.state = {
-      playersArray: [],
       modalVisible: false,
       y: 0
     };
@@ -70,7 +36,6 @@ class CreateTeams extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ playersArray: [...this.DATA] });
   }
 
   deletePlayer(pos) {
@@ -133,18 +98,16 @@ class CreateTeams extends React.Component {
               style={styles.listPlayers}
               data={this.props.players}
               renderItem={({ item }) => {
-                if (item.playerName == "") return null;
+        
                 return (
                   <Player
                     playerName={item.playerName}
-                    color={item.color}
-                    pos={item.pos}
-                    delete={this.deletePlayer.bind(this)}
+                    id={item.id}
                   />
                 );
               }}
               keyExtractor={item => item.id}
-              extraData={this.state.playersArray}
+              extraData={this.state.players}
             />
             <View onLayout={this.handleLayout}>
               {this.state.y < 280 ?
@@ -232,8 +195,8 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = dispatch =>{
     return{
-      add:(name, index)=> dispatch(addPlayer(name,index)),
-      delete:(name,index)=>dispatch(deletePlayer(name,index))
+      add:(id, playerName)=> dispatch(addPlayer(id, playerName)),
+      delete:(id, playerName)=>dispatch(deletePlayer(id, playerName))
     }
 
 }

@@ -8,16 +8,17 @@ import { connect } from "react-redux";
 import { addPlayer, deletePlayer } from "../ducks/actions/players";
 
 class CreatePlayer extends Component {
- 
+  
   constructor(props) {
     super(props)
     this.state = {
       playerName: ""
     }
   }
-
+  
   render() {
- 
+    const index= (this.props.players.length)
+ console.log(this.props.players)
     return (
       <View style={styles.container}>
         <View style={styles.playerBox}>
@@ -36,7 +37,7 @@ class CreatePlayer extends Component {
             }
             value={this.player}
           />
-          <TouchableOpacity onPress={() =>{ this.props.add('olhaicagao',0); this.props.modal()}}>
+          <TouchableOpacity onPress={() =>{ this.props.add({id:`${Math.random()}`,playerName:this.state.playerName}); this.props.modal()}}>
             <Feather
               style={styles.iconUser}
               name="check"
@@ -46,11 +47,11 @@ class CreatePlayer extends Component {
             />
           </TouchableOpacity>
         </View>
-        {console.log(this.props.players)}
       </View>
         )
-  }   
-}
+        
+      }   
+    }
 
 const styles = StyleSheet.create({
   container: {
@@ -87,8 +88,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    add: (name, index) => dispatch(addPlayer(name, index)),
-    delete: (name, index) => dispatch(deletePlayer(name, index))
+    add: ( player) => dispatch(addPlayer( player)),
+    delete: ( player) => dispatch(deletePlayer( player))
   };
 };
 

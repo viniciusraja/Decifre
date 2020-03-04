@@ -1,19 +1,18 @@
 import{ADD_PLAYER,DELETE_PLAYER} from './types'
 
 
-export function addPlayer(name,index){
+export function addPlayer( player){
     return{
         type:'ADD_PLAYER',
-        name:name,
-        index:index,
+        player,
     }
 }
 
-export function deletePlayer(index){
+export function deletePlayer(player){
     return{
         type:'DELETE_PLAYER',
-        name:name,
-        index:index,
+        player,
+       
     }
 }
 export function playersHasErrored(bool) {
