@@ -9,7 +9,7 @@ import CreateLobby from '../screens/CreateLobby'
 import SignInLobby from '../screens/SignInLobby'
 import Instructions from '../screens/Instructions'
 import CreateTeams from '../screens/CreateTeams'
-import Game from '../screens/Game'
+import TeamAScreen from '../screens/TeamAScreen'
 
 const AppNavigator= createStackNavigator({
     Home:{
@@ -46,8 +46,8 @@ const AppNavigator= createStackNavigator({
             
         },
     }, 
-    Game:{
-        screen:Game,
+    TeamAScreen:{
+        screen:TeamAScreen,
         navigationOptions:{
             headerShown: false,
             

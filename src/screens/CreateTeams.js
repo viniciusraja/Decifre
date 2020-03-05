@@ -11,11 +11,11 @@ import { LinearGradient } from "expo-linear-gradient";
 import { TextInput } from "react-native-gesture-handler";
 import { AntDesign, MaterialCommunityIcons } from "expo-vector-icons";
 
-import {connect} from 'react-redux'
-import {addPlayer, deletePlayer} from '../ducks/actions/players'
-
 import Player from "../components/Player";
 import CreatePlayer from "../components/CreatePlayer";
+
+import {connect} from 'react-redux'
+import {addPlayer, deletePlayer} from '../ducks/actions/players'
 class CreateTeams extends React.Component {
   constructor(props) {
     super(props);
@@ -71,13 +71,6 @@ class CreateTeams extends React.Component {
         style={{ flex: 1 }}
       >
         <View style={styles.container}>
-          <TextInput
-            style={styles.input}
-            placeholder="Nome do seu Time"
-            placeholderTextColor="#aaa"
-            onChangeText={team => this.setState({ team })}
-            value={this.state.team}
-          />
 
           <Modal
             style={styles.modal}

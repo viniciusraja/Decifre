@@ -1,8 +1,10 @@
 import {createStore, combineReducers} from 'redux'
 import playerReducer from '../reducers/playerReducer'
+import teamAReducer from '../reducers/teamAReducer'
 
 const rootReducer= combineReducers({
-    playerReducer
+    playerReducer,
+    teamAReducer
 })
 
 const configureStore = () => createStore(rootReducer)

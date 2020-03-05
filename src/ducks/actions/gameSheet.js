@@ -1,19 +1,27 @@
-import{ADD_PLAYER, DELETE_PLAYER} from './types'
+import{ADD_PASSWORD_ROUND,ADD_GUESS_ANSWER,CHECK_ANSWER} from './types'
 
 
-export function addPlayer( player){
+export function addPassword(round){
     return{
-        type:ADD_PLAYER,
-        player,
+        type:ADD_PASSWORD_ROUND,
+        round,
     }
 }
 
-export function deletePlayer(player){
+export function addGuessAnswer(round){
     return{
-        type:DELETE_PLAYER,
-        player,
+        type:ADD_GUESS_ANSWER,
+        round,
        
     }
+}
+
+
+export function checkAnswer(bool) {
+    return {
+        type: CHECK_ANSWER,
+        isCorrect: bool
+    };
 }
 export function playersHasErrored(bool) {
     return {

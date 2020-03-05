@@ -13,13 +13,13 @@ import {
 } from "react-native";
 import { ScreenOrientation } from "expo";
 
-import Round from "../components/Round";
 import RoundsHistory from "../components/RoundsHistory";
-import {PanGestureHandler, State} from 'react-native-gesture-handler'
 import { CarouselComponent } from "../components/CarouselComponent";
 
+import {connect} from 'react-redux'
+import {addPassword, addGuessAnswer} from '../ducks/actions/gameSheet'
 
-export default class Game extends React.Component {
+class TeamAScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -52,8 +52,7 @@ export default class Game extends React.Component {
       </View>
     ) : (
       <View style={styles.container}>
-        <CarouselComponent/>
-        <RoundsHistory/>
+        <CarouselComponent style={styles.carousel}/>
       </View>
     );
   }
@@ -62,14 +61,31 @@ export default class Game extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex:1,
+   
     backgroundColor: "#333",
 
   },
-  round: {
-    backgroundColor: "#555"
+  carousel:{
+    justifyContent:'center',
+    alignItems:'center',
   },
+  
   h1: {
     fontSize: 30
   },
   
 });
+
+
+const mapStateToProps = state => ({
+  teamA: state.playerReducer.teamAList
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    add: ( round) => dispatch(addPassword( round)),
+    delete: ( round) => dispatch(addGuessAnswer( round))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TeamAScreen);

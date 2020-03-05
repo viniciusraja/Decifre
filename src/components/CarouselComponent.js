@@ -11,99 +11,35 @@ export class CarouselComponent extends React.Component {
     this.DATA = [
       {
         round: "1",
-        password1: "",
-        password2: "",
-        password3: "",
-        teamGuess1: "",
-        teamGuess2: "",
-        teamGuess3: "",
-        answer1: "",
-        answer2: "",
-        answer3: ""
+        
       },
       {
         round: "2",
-        password1: "",
-        password2: "",
-        password3: "",
-        teamGuess1: "",
-        teamGuess2: "",
-        teamGuess3: "",
-        answer1: "",
-        answer2: "",
-        answer3: ""
+        
       },
       {
         round: "3",
-        password1: "",
-        password2: "",
-        password3: "",
-        teamGuess1: "",
-        teamGuess2: "",
-        teamGuess3: "",
-        answer1: "",
-        answer2: "",
-        answer3: ""
+        
       },
       {
         round: "4",
-        password1: "",
-        password2: "",
-        password3: "",
-        teamGuess1: "",
-        teamGuess2: "",
-        teamGuess3: "",
-        answer1: "",
-        answer2: "",
-        answer3: ""
+        
       },
       {
         round: "5",
-        password1: "",
-        password2: "",
-        password3: "",
-        teamGuess1: "",
-        teamGuess2: "",
-        teamGuess3: "",
-        answer1: "",
-        answer2: "",
-        answer3: ""
+        
       },
       {
         round: "6",
-        password1: "",
-        password2: "",
-        password3: "",
-        teamGuess1: "",
-        teamGuess2: "",
-        teamGuess3: "",
-        answer1: "",
-        answer2: "",
-        answer3: ""
+        
       },
       {
         round: "7",
-        password1: "",
-        password2: "",
-        password3: "",
-        teamGuess1: "",
-        teamGuess2: "",
-        teamGuess3: "",
-        answer1: "",
-        answer2: "",
-        answer3: ""
+        
       },
       {
         round: "8",
-        password1: "",
-        password2: "",
-        password3: "",
-        teamGuess1: "",
-        teamGuess2: "",
-        teamGuess3: "",
-        answer1: "",
-        answer2: "",
-        answer3: ""
+        
       }
     ];
 
@@ -114,19 +50,20 @@ export class CarouselComponent extends React.Component {
 
   _renderItem = ({item, index}) => {
       return (
-          <Round/>
+          <Round style={{alignItems:'center', backgroundColor:'red'}}/>
       );
   }
 
   render () {
       return (
           <Carousel
+          contentContainerCustomStyle={{alignItems:'center'}}
             ref={(c) => { this._carousel = c; }}
             data={this.DATA}
             renderItem={this._renderItem}
             sliderWidth={590}
             itemWidth={320}
-            layout={'default'} 
+            layout={'tinder'} 
           />
       );
   }

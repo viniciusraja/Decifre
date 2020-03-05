@@ -29,7 +29,7 @@ class HomeScreen extends React.Component {
           <TouchableOpacity style={styles.button} onPress={()=>this.props.navigation.navigate('SignInLobby')}>
             <Text style={styles.h2}> Entrar em Sala </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}  onPress={()=>this.props.navigation.navigate('Game')}>
+          <TouchableOpacity style={styles.button}  onPress={()=>this.props.navigation.navigate('TeamAScreen')}>
             <Text style={styles.h2}> Instruções </Text>
           </TouchableOpacity>
           </View>
