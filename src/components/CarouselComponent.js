@@ -24,7 +24,7 @@ class CarouselComponent extends React.Component {
           <Carousel
           contentContainerCustomStyle={{alignItems:'center'}}
             ref={(c) => { this._carousel = c; }}
-            data={this.props.teamA}
+            data={this.props.teamA.teamAPasswords}
             renderItem={this._renderItem}
             sliderWidth={590}
             itemWidth={320}
@@ -36,7 +36,7 @@ class CarouselComponent extends React.Component {
 
 
 const mapStateToProps = state => ({
-  teamA: state.teamAReducer.teamAList
+  teamA: state.teamAReducer
 });
 
 const mapDispatchToProps = dispatch => {

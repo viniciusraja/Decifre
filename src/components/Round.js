@@ -28,13 +28,12 @@ import {addPassword, addGuessAnswer} from '../ducks/actions/gameSheet'
   
   render() {
     const index= (this.props.teamA.length)||0
-    console.log(this.props.roundNumber)
     return (
       <>
         <View style={styles.roundCard}>
           <View style={styles.header}>
             <Text style={styles.h1}>{this.props.roundNumber}</Text>
-            <Text style={styles.correctAnswer}>{this.props.teamA.roundNumber}</Text>
+            <Text style={styles.correctAnswer}></Text>
           </View>
 
           <View style={styles.password}>
@@ -44,6 +43,8 @@ import {addPassword, addGuessAnswer} from '../ducks/actions/gameSheet'
               placeholderTextColor="grey"
               onChangeText={password1 => this.setState({ password1 })}
               value={this.player}
+              maxLength={20}
+              onEndEditing={() =>{ this.props.add({roundNumber:this.props.roundNumber, password1:this.state.password1, password2:this.state.password2, password3:this.state.password3})}}
             />
             <View style={styles.guessBox}>
             <ScrollPicker
@@ -74,6 +75,8 @@ import {addPassword, addGuessAnswer} from '../ducks/actions/gameSheet'
               placeholderTextColor="grey"
               onChangeText={password2 => this.setState({ password2 })}
               value={this.player}
+              maxLength={20}
+              onEndEditing={() =>{ this.props.add({roundNumber:this.props.roundNumber, password1:this.state.password1, password2:this.state.password2, password3:this.state.password3})}}
               />
             <View style={styles.guessBox}>
             <ScrollPicker
@@ -104,6 +107,8 @@ import {addPassword, addGuessAnswer} from '../ducks/actions/gameSheet'
               placeholderTextColor="grey"
               onChangeText={password3 => this.setState({ password3 })}
               value={this.player}
+              maxLength={20}
+              onEndEditing={() =>{ this.props.add({roundNumber:this.props.roundNumber, password1:this.state.password1, password2:this.state.password2, password3:this.state.password3})}}
               />
             <View style={styles.guessBox}>
             <ScrollPicker
@@ -193,7 +198,7 @@ const styles = StyleSheet.create({
 
 
 const mapStateToProps = state => ({
-  teamA: state.teamAReducer.teamAList
+  teamA: state.teamAReducer
 });
 
 const mapDispatchToProps = dispatch => {

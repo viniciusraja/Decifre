@@ -32,6 +32,7 @@ class CreatePlayer extends Component {
             style={styles.input}
             placeholder="Digite o Nome do jogador"
             placeholderTextColor="grey"
+            maxLength={15}
             onChangeText={playerName =>
               this.setState({ playerName: playerName })
             }
