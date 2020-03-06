@@ -14,7 +14,7 @@ import {
 import { ScreenOrientation } from "expo";
 
 import RoundsHistory from "../components/RoundsHistory";
-import { CarouselComponent } from "../components/CarouselComponent";
+import  CarouselComponent  from "../components/CarouselComponent";
 
 import {connect} from 'react-redux'
 import {addPassword, addGuessAnswer} from '../ducks/actions/gameSheet'

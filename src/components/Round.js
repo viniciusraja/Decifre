@@ -28,12 +28,12 @@ import {addPassword, addGuessAnswer} from '../ducks/actions/gameSheet'
   
   render() {
     const index= (this.props.teamA.length)||0
-    
+    console.log(this.props.roundNumber)
     return (
       <>
         <View style={styles.roundCard}>
           <View style={styles.header}>
-            <Text style={styles.h1}>{this.props.teamA.roundNumber}</Text>
+            <Text style={styles.h1}>{this.props.roundNumber}</Text>
             <Text style={styles.correctAnswer}>{this.props.teamA.roundNumber}</Text>
           </View>
 
@@ -50,12 +50,8 @@ import {addPassword, addGuessAnswer} from '../ducks/actions/gameSheet'
                   dataSource={['?',1,2,3,4]}
                   selectedIndex={0}
                   renderItem={(data, index, isSelected) => {
-                    console.log(data)
-                    console.log(index)
-                    console.log(isSelected)
                   }}
                   onValueChange={(data, selectedIndex) => {
-                    console.log(data)
                     this.setState({guessAnswer1:data})
                     
                   }}
@@ -84,12 +80,8 @@ import {addPassword, addGuessAnswer} from '../ducks/actions/gameSheet'
                   dataSource={['?',1,2,3,4]}
                   selectedIndex={0}
                   renderItem={(data, index, isSelected) => {
-                    console.log(data)
-                    console.log(index)
-                    console.log(isSelected)
                   }}
                   onValueChange={(data, selectedIndex) => {
-                    console.log(data)
                     this.setState({guessAnswer2:data})
                     
                   }}
@@ -118,12 +110,10 @@ import {addPassword, addGuessAnswer} from '../ducks/actions/gameSheet'
                   dataSource={['?',1,2,3,4]}
                   selectedIndex={0}
                   renderItem={(data, index, isSelected) => {
-                    console.log(data)
-                    console.log(index)
-                    console.log(isSelected)
+                   
                   }}
                   onValueChange={(data, selectedIndex) => {
-                    console.log(data)
+                   
                     this.setState({guessAnswer3:data})
                     
                   }}
@@ -139,13 +129,11 @@ import {addPassword, addGuessAnswer} from '../ducks/actions/gameSheet'
 
             </View>
           </View>
-            <TouchableOpacity style={styles.iconCheck} onPress={() =>{ this.props.addGuess({roundNumber:(index+1), guessAnswer1:this.state.guessAnswer1, guessAnswer2:this.state.guessAnswer2, guessAnswer3:this.state.guessAnswer3})}}>
+            <TouchableOpacity style={styles.iconCheck} onPress={() =>{ this.props.addGuess({roundNumber:this.props.roundNumber, guessAnswer1:this.state.guessAnswer1, guessAnswer2:this.state.guessAnswer2, guessAnswer3:this.state.guessAnswer3})}}>
             <Feather
-              
               name="check"
               size={30}
               color="green"
-              
               />
             </TouchableOpacity>
         </View>
@@ -193,10 +181,9 @@ const styles = StyleSheet.create({
     textAlign:'center'
   },
   iconCheck:{
-    justifyContent:'flex-end',
-    alignItems:'flex-end',
-    alignContent:'flex-end',
-    paddingRight:10
+    alignSelf:"flex-end",
+    paddingRight:10,
+    width:35
   },
   h1:{
     height:20,
