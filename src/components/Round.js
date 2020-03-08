@@ -137,7 +137,7 @@ import {addPassword, addGuessAnswer} from '../ducks/actions/gameSheet'
             <TouchableOpacity style={styles.iconCheck} onPress={() =>{ this.props.addGuess({roundNumber:this.props.roundNumber, guessAnswer1:this.state.guessAnswer1, guessAnswer2:this.state.guessAnswer2, guessAnswer3:this.state.guessAnswer3})}}>
             <Feather
               name="check"
-              size={30}
+              size={28}
               color="green"
               />
             </TouchableOpacity>
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
   roundCard: {
     justifyContent: "space-evenly",
     backgroundColor: "#ddd",
-    height: 220,
+    height: 190,
     width: 320,
     padding:0,
     paddingHorizontal:10,
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 30,
-    width: "70%",
+    width: 200,
     textAlign: "center",
     backgroundColor: "#fff",
     borderRadius: 15

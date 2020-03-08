@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Text, View } from "react-native";
 import {
-  Modal,
   StyleSheet,
   TouchableOpacity,
   FlatList,
@@ -10,9 +9,12 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import { TextInput } from "react-native-gesture-handler";
 import { AntDesign, MaterialCommunityIcons } from "expo-vector-icons";
+import Modal from "react-native-modal";
+
 
 import Player from "../components/Player";
 import CreatePlayer from "../components/CreatePlayer";
+
 
 import {connect} from 'react-redux'
 import {addPlayer, deletePlayer} from '../ducks/actions/players'
@@ -33,9 +35,6 @@ class CreateTeams extends React.Component {
     this.setState({
       [name]: team
     });
-  }
-
-  componentDidMount() {
   }
 
   deletePlayer(pos) {
@@ -74,10 +73,10 @@ class CreateTeams extends React.Component {
 
           <Modal
             style={styles.modal}
-            animationType="slide"
+            animationType="fade"
             transparent={true}
-            visible={this.state.modalVisible}
-            presentationStyle="overFullScreen"
+            isVisible={this.state.modalVisible}
+            
           >
             <CreatePlayer
               addPlayer={this.addPlayer.bind(this)}
