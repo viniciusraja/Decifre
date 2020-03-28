@@ -1,4 +1,4 @@
-import{ADD_PASSWORD_ROUND,ADD_GUESS_ANSWER,CHECK_ANSWER} from './types'
+import{ADD_PASSWORD_ROUND,ADD_GUESS_ANSWER,CHECK_ANSWER, TRY_INTERCEPT_ENEMY} from './types'
 
 
 export function addPassword(round){
@@ -11,6 +11,14 @@ export function addPassword(round){
 export function addGuessAnswer(round){
     return{
         type:ADD_GUESS_ANSWER,
+        round,
+       
+    }
+}
+
+export function tryIntercept(round){
+    return{
+        type:TRY_INTERCEPT_ENEMY,
         round,
        
     }

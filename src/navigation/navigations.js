@@ -21,7 +21,7 @@ const AppNavigator= createStackNavigator({
     CreateLobby:{
         screen:CreateLobby,
         navigationOptions:{
-            header:(navigation,screenprops)=><Header name="back" screen="Jogadores" nameIcon2="adduser" {...navigation} {...screenprops} />,
+            header:false,
         },
     
     }, 

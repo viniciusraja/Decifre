@@ -59,9 +59,9 @@ class TeamAScreen extends React.Component {
       <View style={styles.container}>
 <View></View>
 <SwitchToggle
-        buttonText={this.state.switchOn ? 'Hour' : 'Day'}
+        /* buttonText={this.state.switchOn ? 'Hour' : 'Day'}
         backTextRight={this.state.switchOn ? '' : 'Hour'}
-        backTextLeft={this.state.switchOn ? 'Day' : ''}
+        backTextLeft={this.state.switchOn ? 'Day' : ''} */
         type={1}
         buttonStyle={{
           alignItems: 'center',
@@ -83,15 +83,15 @@ class TeamAScreen extends React.Component {
         textLeftStyle={{ fontSize: 10 }}
         containerStyle={{
           marginTop: 16,
-          width: 100,
-          height: 30,
+          width: 50,
+          height: 25,
           borderRadius: 30,
-          padding: 5,
+          padding: 2,
         }}
         backgroundColorOn="#fff"
         backgroundColorOff="#fff"
         circleStyle={{
-          width: 50,
+          width: 20,
           height: 20,
           borderRadius: 27.5,
           backgroundColor: 'blue', // rgb(102,134,205)
@@ -114,7 +114,7 @@ class TeamAScreen extends React.Component {
             backdropOpacity={0.2}
           >
             <TeamAInterception
-              switchModal={this.switchModal.bind(this)} switchOn={this.state.switchOn}
+              switchModal={this.switchModal.bind(this)} switchOn={this.state.switchOn} screenRotated={this.state.screenRotated}
             />
           </Modal>
         <CarouselComponent style={styles.carousel}/>
