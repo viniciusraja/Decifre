@@ -6,12 +6,15 @@ import ScrollPicker from 'react-native-wheel-scroll-picker';
 import {connect} from 'react-redux'
 import {addPassword, addGuessAnswer} from '../ducks/actions/gameSheet'
 
- class Round extends React.Component {
+ class RoundCard extends React.Component {
   static WIDTH =  (Dimensions.get('window').screenHeight-270)
   constructor(props) {
     super(props);
     this.state = {
       roundNumber:'',
+      codeId1:'',
+      codeId2:'',
+      codeId3:'',
       password1: '',
       password2: '',
       password3: '',
@@ -44,7 +47,7 @@ import {addPassword, addGuessAnswer} from '../ducks/actions/gameSheet'
               onChangeText={password1 => this.setState({ password1 })}
               value={this.player}
               maxLength={20}
-              onEndEditing={() =>{ this.props.add({roundNumber:this.props.roundNumber, password1:this.state.password1, password2:this.state.password2, password3:this.state.password3})}}
+              onEndEditing={() =>{ this.props.add({roundNumber:this.props.roundNumber, codeId1:this.state.codeId1, codeId2:this.state.codeId2, codeId3:this.state.codeId3, password1:this.state.password1, password2:this.state.password2, password3:this.state.password3})}}
             />
             <View style={styles.guessBox}>
             <ScrollPicker
@@ -76,7 +79,7 @@ import {addPassword, addGuessAnswer} from '../ducks/actions/gameSheet'
               onChangeText={password2 => this.setState({ password2 })}
               value={this.player}
               maxLength={20}
-              onEndEditing={() =>{ this.props.add({roundNumber:this.props.roundNumber, password1:this.state.password1, password2:this.state.password2, password3:this.state.password3})}}
+              onEndEditing={() =>{ this.props.add({roundNumber:this.props.roundNumber, codeId1:this.state.codeId1, codeId2:this.state.codeId2, codeId3:this.state.codeId3, password1:this.state.password1, password2:this.state.password2, password3:this.state.password3})}}
               />
             <View style={styles.guessBox}>
             <ScrollPicker
@@ -108,7 +111,7 @@ import {addPassword, addGuessAnswer} from '../ducks/actions/gameSheet'
               onChangeText={password3 => this.setState({ password3 })}
               value={this.player}
               maxLength={20}
-              onEndEditing={() =>{ this.props.add({roundNumber:this.props.roundNumber, password1:this.state.password1, password2:this.state.password2, password3:this.state.password3})}}
+              onEndEditing={() =>{ this.props.add({roundNumber:this.props.roundNumber, codeId1:this.state.codeId1, codeId2:this.state.codeId2, codeId3:this.state.codeId3, password1:this.state.password1, password2:this.state.password2, password3:this.state.password3})}}
               />
             <View style={styles.guessBox}>
             <ScrollPicker
@@ -208,4 +211,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Round);
+export default connect(mapStateToProps, mapDispatchToProps)(RoundCard);

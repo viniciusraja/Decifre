@@ -15,7 +15,6 @@ export default class DroppableRoundsHistory extends Component {
     return (
       <View style={styles.mainContainer}>
         <View style={styles.draggableItems}>
-
       <DraggablePassword style={styles.draggableItem} id={1} password={"Gelo"} />
       <DraggablePassword style={styles.draggableItem} id={2} password={"brinco"} />
       <DraggablePassword style={styles.draggableItem} id={3} password={"Pamonha"} />
@@ -45,7 +44,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "flex-end",
     alignItems:"center",
-    height:"100%"
   },
   draggableItems: {
     height:30,
@@ -62,8 +60,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     height: "90%",
-    margin: 0,
-    padding: 0,
   
   },
   dropZoneItem: {
@@ -71,8 +67,8 @@ const styles = StyleSheet.create({
     width: "25%",
     alignItems: "center",
     justifyContent: "center",
-    borderRightWidth:1,
-    backgroundColor: "#888"
+    backgroundColor: "#888",
+    borderRightWidth:1
   },
   h1: {
     fontFamily:'orbitron-regular',

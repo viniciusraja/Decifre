@@ -8,9 +8,13 @@ import {
   Dimensions
 } from "react-native";
 
+import { connect } from "react-redux";
+import { addInterception} from "../ducks/actions/gameSheet";
+
+
 const screenWidth = Dimensions.get('screen').width;
 const windowWidth = Dimensions.get('window').width;
-export default class Draggable extends Component {  
+class DraggablePassword extends Component {  
   constructor(props) {
     super(props);
 
@@ -19,7 +23,11 @@ export default class Draggable extends Component {
       dropAreaValues: null,
       pan: new Animated.ValueXY(),
       opacity: new Animated.Value(1),
-      offsetX:0
+      offsetX:0,
+      guessIntercept1:{},
+      guessIntercept2:{},
+      guessIntercept3:{},
+      guessIntercept4:{},
     };
   }
 
@@ -61,7 +69,7 @@ export default class Draggable extends Component {
                   
                 }),
                 this.state.pan.setValue({x:Dimensions.get('window').width/8-Dimensions.get('window').width/4,y:0.77*Dimensions.get('screen').height})
-              )}
+                )}
             case(3):{
               return(
                 this.state.pan.setOffset({
@@ -70,7 +78,6 @@ export default class Draggable extends Component {
                   
                 }),
                 this.state.pan.setValue({x:Dimensions.get('window').width/8,y:0.77*Dimensions.get('screen').height})
-
               )}
             case(4):{
               return(
@@ -80,7 +87,6 @@ export default class Draggable extends Component {
                   
                 }),
                 this.state.pan.setValue({x:Dimensions.get('window').width/8+Dimensions.get('window').width/4,y:0.77*Dimensions.get('screen').height})
-
               )}
               default:{
             Animated.spring(            //Step 1
@@ -108,14 +114,22 @@ export default class Draggable extends Component {
 
   isDropArea(gesture) {
     switch(true){
-      case (gesture.moveX < 0.25*Dimensions.get('window').width && gesture.moveY>100):
-        return ( 1 )
-      case (gesture.moveX < 0.5*Dimensions.get('window').width && gesture.moveY>100):
+      case (gesture.moveX < 0.25*Dimensions.get('window').width && gesture.moveY>100):{
+        this.props.addInterception({passwordCode:this.props.id,codeGuess:1})
+        return (1)
+      }
+      case (gesture.moveX < 0.5*Dimensions.get('window').width && gesture.moveY>100):{
+        this.props.addInterception({passwordCode:this.props.id,codeGuess:2})
         return (2)
-      case (gesture.moveX < 0.75*Dimensions.get('window').width && gesture.moveY>100):
+      }
+      case (gesture.moveX < 0.75*Dimensions.get('window').width && gesture.moveY>100):{
+        this.props.addInterception({passwordCode:this.props.id,codeGuess:3})
         return (3)
-      case (gesture.moveX < 1*Dimensions.get('window').width && gesture.moveY>100):
+      }
+      case (gesture.moveX < 1*Dimensions.get('window').width && gesture.moveY>100):{
+        this.props.addInterception({passwordCode:this.props.id,codeGuess:4})
         return (4)
+      }
       default:
         break
         
@@ -171,3 +185,15 @@ let styles = StyleSheet.create({
     textAlign:"center"
   }
 });
+const mapStateToProps = state => ({
+  teamA: state.teamAReducer
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addInterception: ( round) => dispatch(addInterception( round)),
+  };
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(DraggablePassword);
+

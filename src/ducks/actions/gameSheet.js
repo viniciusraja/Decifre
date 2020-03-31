@@ -16,7 +16,7 @@ export function addGuessAnswer(round){
     }
 }
 
-export function tryIntercept(round){
+export function addInterception(round){
     return{
         type:TRY_INTERCEPT_ENEMY,
         round,

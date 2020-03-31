@@ -11,7 +11,6 @@ import {
 import { ScreenOrientation } from "expo";
 
 import  CarouselComponent  from "../components/CarouselComponent";
-import  TeamAInterception  from "../components/TeamAInterception";
 
 import Modal from "react-native-modal";
 import { SwitchToggle } from '@dooboo-ui/native';
@@ -28,6 +27,8 @@ class TeamAScreen extends React.Component {
       width: 0,
       switchOn:false,
     };
+    
+    this.switchModal = this.switchModal.bind(this);
     
   };
 
@@ -53,11 +54,10 @@ class TeamAScreen extends React.Component {
           { justifyContent: "center", alignItems: "center" }
         ]}
       >
-        <ActivityIndicator color="blue" />
+        <ActivityIndicator color="#000" />
       </View>
     ) : (
-      <View style={styles.container}>
-<View></View>
+      <View style={styles.container} >
 <SwitchToggle
         /* buttonText={this.state.switchOn ? 'Hour' : 'Day'}
         backTextRight={this.state.switchOn ? '' : 'Hour'}
@@ -102,22 +102,7 @@ class TeamAScreen extends React.Component {
         circleColorOn="#e5e1e0"
         duration={600}
       />
-           <Modal
-            style={styles.interceptionContainer}
-            transparent={true}
-            isVisible={this.state.switchOn}
-            onBackdropPress={() => this.setState({ switchOn: false })}
-           // onSwipeComplete={() => this.setState({ switchOn: false })}
-            //swipeDirection="down"
-            animationIn={"slideInUp"}
-            animationInTiming={1000}
-            backdropOpacity={0.2}
-          >
-            <TeamAInterception
-              switchModal={this.switchModal.bind(this)} switchOn={this.state.switchOn} screenRotated={this.state.screenRotated}
-            />
-          </Modal>
-        <CarouselComponent style={styles.carousel}/>
+        <CarouselComponent style={styles.carousel} switchOn={this.state.switchOn} switchModal={this.switchModal} />
       </View>
     );
   }
@@ -135,29 +120,10 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignItems:'center',
   },
-  interceptionContainer:{
-    margin:0,
-    flex:1,
-    alignItems:'flex-end',
-    justifyContent:'flex-end',
-    alignSelf:'flex-end'
-  },
-  h1: {
+  h1:{
     fontSize: 30
-  },
-  
+  }
 });
 
 
-const mapStateToProps = state => ({
-  teamA: state.playerReducer.teamAList
-});
-
-const mapDispatchToProps = dispatch => {
-  return {
-    add: ( round) => dispatch(addPassword( round)),
-    delete: ( round) => dispatch(addGuessAnswer( round))
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(TeamAScreen);
+export default (TeamAScreen);
