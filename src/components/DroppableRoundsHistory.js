@@ -15,9 +15,9 @@ export default class DroppableRoundsHistory extends Component {
     return (
       <View style={styles.mainContainer}>
         <View style={styles.draggableItems}>
-      <DraggablePassword style={styles.draggableItem} id={1} password={"Gelo"} />
-      <DraggablePassword style={styles.draggableItem} id={2} password={"brinco"} />
-      <DraggablePassword style={styles.draggableItem} id={3} password={"Pamonha"} />
+      <DraggablePassword style={styles.draggableItem} roundNumber={this.props.roundNumber} id={1} password={"1"} />
+      <DraggablePassword style={styles.draggableItem} roundNumber={this.props.roundNumber} id={2} password={"2"} />
+      <DraggablePassword style={styles.draggableItem} roundNumber={this.props.roundNumber} id={3} password={"3"} />
         </View>
      
         <View style={styles.dropZoneItems}>

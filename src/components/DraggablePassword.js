@@ -24,10 +24,6 @@ class DraggablePassword extends Component {
       pan: new Animated.ValueXY(),
       opacity: new Animated.Value(1),
       offsetX:0,
-      guessIntercept1:{},
-      guessIntercept2:{},
-      guessIntercept3:{},
-      guessIntercept4:{},
     };
   }
 
@@ -51,7 +47,7 @@ class DraggablePassword extends Component {
         ]),
         onPanResponderRelease: (e, gesture) => {
           switch(this.isDropArea(gesture)) {
-            case(1):{console.log(this.state.pan)
+            case(1):{
               return(
                 this.state.pan.setOffset({
                   x: 0,
@@ -115,19 +111,19 @@ class DraggablePassword extends Component {
   isDropArea(gesture) {
     switch(true){
       case (gesture.moveX < 0.25*Dimensions.get('window').width && gesture.moveY>100):{
-        this.props.addInterception({passwordCode:this.props.id,codeGuess:1})
+        this.props.addInterception({Id:this.props.id,codeGuess:1, roundNumber:this.props.roundNumber})
         return (1)
       }
       case (gesture.moveX < 0.5*Dimensions.get('window').width && gesture.moveY>100):{
-        this.props.addInterception({passwordCode:this.props.id,codeGuess:2})
+        this.props.addInterception({Id:this.props.id,codeGuess:2, roundNumber:this.props.roundNumber})
         return (2)
       }
       case (gesture.moveX < 0.75*Dimensions.get('window').width && gesture.moveY>100):{
-        this.props.addInterception({passwordCode:this.props.id,codeGuess:3})
+        this.props.addInterception({Id:this.props.id,codeGuess:3, roundNumber:this.props.roundNumber})
         return (3)
       }
       case (gesture.moveX < 1*Dimensions.get('window').width && gesture.moveY>100):{
-        this.props.addInterception({passwordCode:this.props.id,codeGuess:4})
+        this.props.addInterception({Id:this.props.id,codeGuess:4, roundNumber:this.props.roundNumber})
         return (4)
       }
       default:

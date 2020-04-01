@@ -1,16 +1,17 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Carousel from "react-native-snap-carousel";
 import Modal from "react-native-modal";
 
 import RoundCard from "./RoundCard";
 import DroppableRoundsHistory from "./DroppableRoundsHistory";
 import { connect } from "react-redux";
-class CarouselComponent extends React.Component {
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+class GameRoundComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      roundNumber: "1"
+      roundNumber: 1
     };
   }
 
@@ -40,7 +41,9 @@ class CarouselComponent extends React.Component {
           onSnapToItem={() => {
             this.setState({ roundNumber: this._carousel.currentIndex + 1 });
           }}
+          
         />
+
         <Modal
           style={styles.interceptionContainer}
           transparent={true}
@@ -49,15 +52,17 @@ class CarouselComponent extends React.Component {
           //swipeDirection="down"
           animationIn={"slideInUp"}
           animationInTiming={1000}
-          backdropOpacity={0.2}
+          backdropOpacity={0.1}
           onRequestClose={()=>this.props.switchModal()}
         >
+          <TouchableOpacity onPress={()=>this.props.switchModal()} style={{height:40,width:70}} />
 
           <View style={styles.roundsHistory}>
           <DroppableRoundsHistory
             roundNumber={this.state.roundNumber}
             />
           </View>
+            
         </Modal>
         </View>
       </>
@@ -91,4 +96,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CarouselComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(GameRoundComponent);

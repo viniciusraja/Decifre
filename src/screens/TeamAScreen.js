@@ -3,16 +3,14 @@ import React from "react";
 import {
   View,
   Text,
-  ScrollView,
   StyleSheet,
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
 import { ScreenOrientation } from "expo";
 
-import  CarouselComponent  from "../components/CarouselComponent";
+import  GameRoundComponent  from "../components/GameRoundComponent";
 
-import Modal from "react-native-modal";
 import { SwitchToggle } from '@dooboo-ui/native';
 
 import {connect} from 'react-redux'
@@ -49,12 +47,12 @@ class TeamAScreen extends React.Component {
   render() {
     return !this.state.screenRotated ? (
       <View
-        style={[
-          styles.waitScreen,
-          { justifyContent: "center", alignItems: "center" }
-        ]}
+        style={
+          
+          {flex:1, justifyContent: "center", alignItems: "center" }
+        }
       >
-        <ActivityIndicator color="#000" />
+        <ActivityIndicator color="#000" size={50}/>
       </View>
     ) : (
       <View style={styles.container} >
@@ -102,7 +100,7 @@ class TeamAScreen extends React.Component {
         circleColorOn="#e5e1e0"
         duration={600}
       />
-        <CarouselComponent style={styles.carousel} switchOn={this.state.switchOn} switchModal={this.switchModal} />
+        <GameRoundComponent style={styles.carousel} switchOn={this.state.switchOn} switchModal={this.switchModal} />
       </View>
     );
   }
