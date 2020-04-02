@@ -36,7 +36,7 @@ class GameRoundComponent extends React.Component {
           data={this.props.teamA.teamA}
           renderItem={this._renderItem}
           sliderWidth={590}
-          itemWidth={320}
+          itemWidth={400}
           layout={"tinder"}
           onSnapToItem={() => {
             this.setState({ roundNumber: this._carousel.currentIndex + 1 });
