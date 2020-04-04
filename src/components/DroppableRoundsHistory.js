@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, View, Text, Dimensions } from "react-native";
 import DraggablePassword from "./DraggablePassword";
 
-export default class DroppableRoundsHistory extends Component {
+export default class DroppableRoundsHistory extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {

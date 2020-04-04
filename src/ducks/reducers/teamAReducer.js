@@ -82,9 +82,9 @@ const teamAReducer = (state = initialState, action) => {
                   codeId: action.round.codeId2,
                   password: action.round.password2
                 },
-                password: {
+                password3: {
                   codeId: action.round.codeId,
-                  password: action.round.password
+                  password: action.round.password3
                 }
               }
             };
@@ -114,11 +114,11 @@ const teamAReducer = (state = initialState, action) => {
           })
         ]
       };
-    case TRY_INTERCEPT_ENEMY:console.log(state)
+    case TRY_INTERCEPT_ENEMY:
           return {
         ...state,
         teamA: [
-          ...state.teamA.map((item, index) => {
+          ...state.teamA.map((item, index) => {console.log(action.round.roundNumber)
             if (item.roundNumber != action.round.roundNumber) {
               return item;
             }

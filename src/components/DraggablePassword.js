@@ -12,9 +12,7 @@ import { connect } from "react-redux";
 import { addInterception} from "../ducks/actions/gameSheet";
 
 
-const screenWidth = Dimensions.get('screen').width;
-const windowWidth = Dimensions.get('window').width;
-class DraggablePassword extends Component {  
+class DraggablePassword extends React.PureComponent {  
   constructor(props) {
     super(props);
 

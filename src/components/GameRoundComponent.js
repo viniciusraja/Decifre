@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View,Dimensions } from "react-native";
 import Carousel from "react-native-snap-carousel";
 import Modal from "react-native-modal";
 
@@ -7,20 +7,27 @@ import RoundCard from "./RoundCard";
 import DroppableRoundsHistory from "./DroppableRoundsHistory";
 import { connect } from "react-redux";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+let roundNumber=''
 class GameRoundComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       roundNumber: 1
     };
-  }
+  };
 
+  updateIndex=(index)=>{
+    this.setState({roundNumber:(index+1)})
+  }
   _renderItem = ({ item, index }) => {
+    
     return (
+      <View>
       <RoundCard
         style={{ alignItems: "center" }}
-        roundNumber={item.roundNumber}
+        roundNumber={index+1}
       />
+        </View>
     );
   };
 
@@ -35,13 +42,11 @@ class GameRoundComponent extends React.Component {
           }}
           data={this.props.teamA.teamA}
           renderItem={this._renderItem}
-          sliderWidth={590}
+          sliderWidth={Dimensions.get('screen').width}
           itemWidth={400}
-          layout={"tinder"}
-          onSnapToItem={() => {
-            this.setState({ roundNumber: this._carousel.currentIndex + 1 });
-          }}
-          
+          layout={"stack"}
+          lockScrollWhileSnapping={false}
+          onSnapToItem={(index)=>{this.updateIndex(index)}}
         />
 
         <Modal
@@ -51,7 +56,7 @@ class GameRoundComponent extends React.Component {
           //onSwipeComplete={()=>this.props.switchModal()}
           //swipeDirection="down"
           animationIn={"slideInUp"}
-          animationInTiming={1000}
+          animationInTiming={600}
           backdropOpacity={0.1}
           onRequestClose={()=>this.props.switchModal()}
         >

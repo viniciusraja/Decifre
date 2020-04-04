@@ -13,7 +13,7 @@ import ScrollPicker from "react-native-wheel-scroll-picker";
 import { connect } from "react-redux";
 import { addPassword, addGuessAnswer } from "../ducks/actions/gameSheet";
 
-class RoundCard extends React.Component {
+class RoundCard extends React.PureComponent {
   static WIDTH = Dimensions.get("window").screenHeight - 270;
   constructor(props) {
     super(props);
@@ -47,11 +47,12 @@ class RoundCard extends React.Component {
               <View style={styles.password}>
                 <TextInput
                   style={styles.input}
+                  multiline={true}
+                  keyboardType={"default"}
                   placeholder="Digite a Dica para sua Equipe"
                   placeholderTextColor="grey"
                   onChangeText={password1 => this.setState({ password1 })}
-                  value={this.player}
-                  maxLength={20}
+                  maxLength={15}
                   onEndEditing={() => {
                     this.props.add({
                       roundNumber: this.props.roundNumber,
@@ -86,11 +87,12 @@ class RoundCard extends React.Component {
               <View style={styles.password}>
                 <TextInput
                   style={styles.input}
+                  multiline={true}
+                  keyboardType={"default"}
                   placeholder="Digite a Dica para sua Equipe"
                   placeholderTextColor="grey"
                   onChangeText={password2 => this.setState({ password2 })}
-                  value={this.player}
-                  maxLength={20}
+                  maxLength={15}
                   onEndEditing={() => {
                     this.props.add({
                       roundNumber: this.props.roundNumber,
@@ -125,11 +127,12 @@ class RoundCard extends React.Component {
               <View style={styles.password}>
                 <TextInput
                   style={styles.input}
+                  multiline={true}
+                  keyboardType={"default"}
                   placeholder="Digite a Dica para sua Equipe"
                   placeholderTextColor="grey"
                   onChangeText={password3 => this.setState({ password3 })}
-                  value={this.player}
-                  maxLength={20}
+                  maxLength={15}
                   onEndEditing={() => {
                     this.props.add({
                       roundNumber: this.props.roundNumber,
@@ -183,17 +186,17 @@ class RoundCard extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  cardContainer:{
-    height: 210,
-    width: "100%",
+  cardContainer: {
+    height: 250,
+    width: 390,
     backgroundColor: "#ddd",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 20,
+    borderRadius: 20
   },
   passwordsContainer: {
     width: "100%",
-    height:"70%",
+    height: "70%",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center"
@@ -201,62 +204,62 @@ const styles = StyleSheet.create({
   passwords: {
     justifyContent: "space-evenly",
     alignItems: "center",
-    height:"100%",
-    width:"75%"
+    height: "100%",
+    width: "75%"
   },
   roundNumberContainer: {
     width: "25%",
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    borderRightWidth:1,
-    borderRightColor:"#aaa"
+    borderRightWidth: 1,
+    borderRightColor: "#aaa"
   },
   header: {
-    height:"15%",
+    height: "15%",
     flexDirection: "row",
     justifyContent: "center",
-    alignItems:"center"
+    alignItems: "center"
   },
   password: {
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-evenly",
-    alignItems: "center",
+    alignItems: "center"
   },
   input: {
+    width:"70%",
     height: 30,
-    width: 200,
-    textAlign: "center",
+    textAlign:'center',
     backgroundColor: "#fff",
     borderRadius: 15
   },
   guessBox: {
     backgroundColor: "#fff",
     height: 30,
-    width: 60,
+    width: "25%",
     borderRadius: 15
   },
   correctAnswer: {
     backgroundColor: "#fff",
     width: 60,
-    height:20,
+    height: 20,
     borderRadius: 15,
     textAlign: "center"
   },
   iconCheck: {
     alignSelf: "flex-end",
-    justifyContent:"center",
-    height:"15%",
+    justifyContent: "center",
+    height: "15%",
     paddingRight: 10,
-    width: 35,
+    width: 35
   },
   h1: {
     fontFamily: "orbitron-regular",
     width: "100%",
     textAlign: "center",
     fontSize: 90,
-    opacity:0.2,
+    opacity: 0.2
   }
 });
 

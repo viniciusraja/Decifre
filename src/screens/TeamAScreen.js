@@ -5,7 +5,8 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  ActivityIndicator
+  ActivityIndicator,
+  TouchableOpacityBase
 } from "react-native";
 import { ScreenOrientation } from "expo";
 import { SwitchToggle } from "@dooboo-ui/native";
@@ -13,7 +14,7 @@ import { SwitchToggle } from "@dooboo-ui/native";
 import GamePassword from "../components/GamePassword";
 import GameRoundComponent from "../components/GameRoundComponent";
 
-import { AntDesign, MaterialCommunityIcons } from "expo-vector-icons";
+import { EvilIcons, MaterialCommunityIcons } from "expo-vector-icons";
 
 import { connect } from "react-redux";
 import { addPassword, addGuessAnswer } from "../ducks/actions/gameSheet";
@@ -54,7 +55,7 @@ class TeamAScreen extends React.Component {
         <View style={styles.header}>
           <View style={styles.passwordContainer}>
           <GamePassword style={styles.passwordItem} passwordName={"aboboras"} passwordCode={1}/>
-          <GamePassword style={styles.passwordItem} passwordName={"abobora"} passwordCode={2}/>
+          <GamePassword style={styles.passwordItem} passwordName={"casa"} passwordCode={2}/>
           <GamePassword style={styles.passwordItem} passwordName={"abobora"} passwordCode={3}/>
           <GamePassword style={styles.passwordItem} passwordName={"abobora"} passwordCode={4}/>
           </View>          
@@ -118,6 +119,14 @@ class TeamAScreen extends React.Component {
           switchOn={this.state.switchOn}
           switchModal={this.switchModal}
         />
+        <TouchableOpacity style={styles.lookCodeButton}>
+        <EvilIcons
+            name="eye"
+            size={35}
+            color="#ccc"
+            />
+        </TouchableOpacity>
+
       </View>
     );
   }
@@ -159,6 +168,13 @@ const styles = StyleSheet.create({
   carousel: {
     justifyContent: "center",
     alignItems: "center"
+  },
+  lookCodeButton:{
+    height:40,
+    width:40,
+    alignSelf:"flex-end",
+    justifyContent:"center",
+    alignItems:"center"
   },
   h1: {
     fontSize: 30
